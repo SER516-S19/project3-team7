@@ -1,15 +1,14 @@
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ProfessorMain extends Application {
+public class ProfessorApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("professor.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/professor.fxml"));
         primaryStage.setTitle("Hello Professor");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
