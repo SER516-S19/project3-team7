@@ -9,10 +9,11 @@ public class ProfessorApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/professor.fxml"));
-        Parent root1 = FXMLLoader.load(getClass().getResource("view/CreateQuiz.fxml"));
+        //load the create quiz view
+//        Parent root1 = FXMLLoader.load(getClass().getResource("view/CreateQuiz.fxml"));
         primaryStage.setTitle("Hello Professor");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.setScene(new Scene(root1, 800, 500));
+        primaryStage.setScene(new Scene(root, 800, 600));
+//        primaryStage.setScene(new Scene(root1, 800, 600));
         primaryStage.show();
     }
 

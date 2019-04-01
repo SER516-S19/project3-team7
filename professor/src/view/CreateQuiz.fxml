@@ -8,32 +8,36 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="controller.QuizController" maxHeight="600" maxWidth="800" prefHeight="600"
+            prefWidth="800"  xmlns:fx="http://javafx.com/javafx/8">
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Create Quiz" />
+                <Menu mnemonicParsing="false" text="Home" />
               </menus>
             </MenuBar>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <VBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField promptText="Enter Question" />
-                  <TextField promptText="Enter Option1" />
-                  <TextField promptText="Enter Option2" />
-                  <TextField promptText="Enter Option3" />
-                  <TextField promptText="Enter Option4" />
-                  <TextField promptText="Enter Correct Option" />
-                  <Button mnemonicParsing="false" text="Submit" />
+                  <TextField promptText="Enter Question" maxWidth="700"/>
+                  <TextField promptText="Enter Option1"  maxWidth="500"/>
+                  <TextField promptText="Enter Option2"  maxWidth="500"/>
+                  <TextField promptText="Enter Option3"  maxWidth="500"/>
+                  <TextField promptText="Enter Option4"  maxWidth="500"/>
+                  <TextField promptText="Enter Correct Option" maxWidth="500" />
                </children>
+               <HBox alignment="CENTER_LEFT">
+                  <Button mnemonicParsing="false" text="Submit" />
+                  <Button mnemonicParsing="false" text="Cancel" />
+               </HBox>
                <VBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </VBox.margin>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
    </top>
