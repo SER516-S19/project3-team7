@@ -5,33 +5,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
 <GridPane fx:controller="controller.ProfessorController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <VBox prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-                    <children>
-                        <Button fx:id="loadQuiz" text="Load Quizzes" onAction="#loadQuizzes"/>
-                        <Button text="Add Quiz" onAction="#createQuiz"/>
-                        <Button maxWidth="700" fx:id="quizName1" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName2" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName3" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName4" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName5" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName6" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName7" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName8" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName9" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName10" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName11" visible="false"/>
-                        <Button maxWidth="700" fx:id="quizName12" visible="false"/>
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                    </VBox.margin>
-                    <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                    </padding>
-                </VBox>
-            </children>
-        </VBox>
+    <VBox spacing="10.0">
+        <children>
+            <Button fx:id="loadQuiz" text="Load Quizzes" onAction="#loadQuizzes"/>
+            <Button text="Add Quiz" onAction="#createQuiz"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes" />
+            <ListView fx:id="quizList" prefHeight="480" prefWidth="700.0" />
+        </children>
+        <VBox.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+        </VBox.margin>
+        <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+        </padding>
+    </VBox>
 </GridPane>
+

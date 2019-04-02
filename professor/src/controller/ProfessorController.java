@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 import java.io.File;
 import java.net.URL;
@@ -12,53 +15,37 @@ import java.util.ResourceBundle;
 
 public class ProfessorController implements Initializable {
 
-    public int noOfQuestions=0;
-    ArrayList<String> listOfQuizNames = new ArrayList<String>();
+    @FXML
+    private ListView<String> quizList;
+
+    private ObservableList<Object> quizNames =  FXCollections.observableArrayList();
+
+    private ArrayList<String> listOfQuizNames;
+
+    public ProfessorController() {
+        listOfQuizNames = new ArrayList<>();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // replace actual path of quiz directory string if it doesn't work in windows for now
+
         String cwd = System.getProperty("user.dir").replaceFirst("professor","quiz");
         File dir = new File(cwd);
         File[] allFiles = dir.listFiles((dir1, name) -> name.startsWith("quiz") && name.endsWith(".json"));
 
-        for (File file : allFiles) {
-            listOfQuizNames.add(file.getName().toString().substring(0,file.getName().toString().lastIndexOf('.')));
-        }
+        assert allFiles != null;
+        for (File file : allFiles)
+            listOfQuizNames.add(file.getName().substring(0, file.getName().toString().lastIndexOf('.')));
         Collections.sort(listOfQuizNames);
-        noOfQuestions = listOfQuizNames.size();
-        if (listOfQuizNames.size() == 0) {
-            System.out.println("No quizzes available");
-        } else {
-            for (String quiz : listOfQuizNames) {
-                System.out.println(quiz);
-            }
-        }
+
     }
 
-    public Button loadQuiz;
-    public Button quizName1;
-    public Button quizName2;
-    public Button quizName3;
-    public Button quizName4;
-    public Button quizName5;
-    public Button quizName6;
-    public Button quizName7;
-    public Button quizName8;
-    public Button quizName9;
-    public Button quizName10;
-    public Button quizName11;
-    public Button quizName12;
     public void loadQuizzes(){
+        quizList.getItems().clear();
+        quizNames.clear();
 
-    quizName1.setText("Quiz1");
-    quizName1.setVisible(true);
-    quizName2.setText("Quiz1");
-    quizName2.setVisible(true);
-    quizName3.setText("Quiz1");
-    quizName3.setVisible(true);
-    quizName4.setText("Quiz1");
-    quizName4.setVisible(true);
-
+        quizNames.addAll(listOfQuizNames);
+        quizList.getItems().addAll(String.valueOf(quizNames));
     }
 
     public void createQuiz(ActionEvent actionEvent) {
