@@ -1,25 +1,32 @@
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<GridPane fx:controller="controller.ProfessorController" xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-    <VBox spacing="10.0">
-        <children>
-            <Button fx:id="loadQuiz" text="Load Quizzes" onAction="#loadQuizzes"/>
-            <Button text="Add Quiz" onAction="#createQuiz"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quizzes" />
-            <ListView fx:id="quizList" prefHeight="480" prefWidth="700.0" />
-        </children>
-        <VBox.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-        </VBox.margin>
-        <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-        </padding>
-    </VBox>
-</GridPane>
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfessorController">
+    <children>
+        <VBox layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="700.0">
+            <children>
+                <HBox>
+                    <Button text="Load Quizzes" onAction="#loadQuizzes" alignment="TOP_LEFT">
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <HBox.margin>
+                            <Insets right="507"></Insets>
+                        </HBox.margin>
+                    </Button>
+                    <Button text="Create Quiz" onAction="#createQuiz" alignment="TOP_RIGHT">
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                    </Button>
+                </HBox>
+                <ListView fx:id="quizList" onMouseClicked="#selectedQuiz">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </ListView>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
