@@ -1,1 +1,19 @@
+{
+  "questions": [
+    {
+      "title": "Dummy question title1",
+      "options": [
+        "option1", "option2", "option3", "option4"
+      ],
+      "correctAnswer": "option1"
+    },
+    {
+      "title": "Dummy question title2",
+      "options": [
+        "option1", "option2", "option3", "option4"
+      ],
+      "correctAnswer": "option1"
+    }
+  ]
+}
 
