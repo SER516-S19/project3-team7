@@ -50,13 +50,13 @@ public class ProfessorController implements Initializable {
     public Button quizName12;
     public void loadQuizzes(){
 
-    quizName1.setText(listOfQuizNames.get(0));
+    quizName1.setText("Quiz1");
     quizName1.setVisible(true);
-    quizName2.setText(listOfQuizNames.get(1));
+    quizName2.setText("Quiz1");
     quizName2.setVisible(true);
-    quizName3.setText(listOfQuizNames.get(2));
+    quizName3.setText("Quiz1");
     quizName3.setVisible(true);
-    quizName4.setText(listOfQuizNames.get(3));
+    quizName4.setText("Quiz1");
     quizName4.setVisible(true);
 
     }
