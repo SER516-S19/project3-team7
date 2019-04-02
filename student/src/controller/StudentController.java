@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Class to display the list of Quiz to take
+ */
 public class StudentController implements Initializable {
 
     @FXML
@@ -19,6 +22,7 @@ public class StudentController implements Initializable {
 
     private ObservableList quizNames =  FXCollections.observableArrayList();
 
+    QuestionAnswerController questionAnswerObj = new QuestionAnswerController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,12 +38,11 @@ public class StudentController implements Initializable {
 
 
     public void listViewEventListener() {
-
         quizList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
-                System.out.println("Selected item: " + newValue);
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String selectedQuiz) {
+                //System.out.println("Selected item: " + selectedQuiz);
+                questionAnswerObj.fetchQuizDetails(selectedQuiz);
             }
         });
     }
