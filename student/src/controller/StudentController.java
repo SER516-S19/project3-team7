@@ -4,11 +4,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import java.awt.event.ActionEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,7 +21,7 @@ public class StudentController implements Initializable {
 
     private ObservableList quizNames =  FXCollections.observableArrayList();
 
-    QuestionAnswerController questionAnswerObj = new QuestionAnswerController();
+    ShowQuiz questionAnswerObj = new ShowQuiz();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,4 +45,5 @@ public class StudentController implements Initializable {
             }
         });
     }
+
 }

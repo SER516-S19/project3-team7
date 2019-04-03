@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ShowQuiz">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="QuizName" alignment="TOP_CENTER" contentDisplay="CENTER" text="QuizName" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Text layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QNo" />
+      <Text fx:id="questionTitle" layoutX="50.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="option1" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" text="Option1" />
+      <RadioButton fx:id="option2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" text="Option2" />
+      <RadioButton fx:id="option3" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" text="Option3" />
+      <RadioButton fx:id="option4" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" text="Option4" />
+      <HBox alignment="CENTER" layoutY="220.0" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#endQuiz" text="Give Up">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#showNextQuestion" text="Next">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

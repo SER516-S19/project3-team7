@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Class to render Question and Answer from the Json file
  */
-public class QuestionAnswerController {
+public class ShowQuiz {
 
     public void fetchQuizDetails(String selectedQuiz){
         try {
@@ -24,7 +24,11 @@ public class QuestionAnswerController {
         catch (JsonParseException e) { e.printStackTrace();}
         catch (JsonMappingException e) { e.printStackTrace(); }
         catch (IOException e) { e.printStackTrace(); }
-
     }
+
+    public void endQuiz(){}
+
+    public void showNextQuestion(){}
+
 }
 
