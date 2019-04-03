@@ -9,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +25,43 @@ public class ProfessorController implements Initializable {
     @FXML
     private ListView<String> quizList;
 
-    private ObservableList<String> quizNames =  FXCollections.observableArrayList();
+    private ObservableList<String> quizNames = FXCollections.observableArrayList();
 
     private ArrayList<String> listOfQuizNames = new ArrayList<>();
 
-    private String selectedItem;
+    public ProfessorController() {
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadQuizzes();
+    }
+
+    private void loadQuizzes() {
+        String cwd = System.getProperty("user.dir").replaceFirst("professor", "quiz");
+        File newFile = new File(cwd);
+        File[] allFiles = newFile.listFiles((dir1, name) -> name.startsWith("quiz") && name.endsWith(".json"));
+
+        assert allFiles != null;
+        for (File file : allFiles)
+            listOfQuizNames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
+        Collections.sort(listOfQuizNames);
+        quizList.getItems().clear();
+        quizNames.clear();
+        quizNames.addAll(listOfQuizNames);
+        quizList.setItems(quizNames);
+        quizList.setCellFactory(param -> new XCell());
+    }
+
+    public void selectQuiz() {
+        String selectedItem = quizList.getSelectionModel().getSelectedItem();
+        System.out.println(selectedItem);
+    }
+
+    public void createQuiz(ActionEvent actionEvent) throws IOException {
+        //code to change scene to create quiz
+
+    }
 
     static class XCell extends ListCell<String> {
         HBox hbox = new HBox();
@@ -54,44 +86,10 @@ public class ProfessorController implements Initializable {
                 setGraphic(null);
             } else {
                 lastItem = item;
-                label.setText(item!=null ? item : "<null>");
+                label.setText(item != null ? item : "<null>");
                 setGraphic(hbox);
             }
         }
-    }
-
-    public ProfessorController() {
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        String cwd = System.getProperty("user.dir").replaceFirst("professor","quiz");
-        File dir = new File(cwd);
-        File[] allFiles = dir.listFiles((dir1, name) -> name.startsWith("quiz") && name.endsWith(".json"));
-
-        assert allFiles != null;
-        for (File file : allFiles)
-            listOfQuizNames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
-        Collections.sort(listOfQuizNames);
-
-    }
-
-    public void loadQuizzes(){
-        quizList.getItems().clear();
-        quizNames.clear();
-        quizNames.addAll(listOfQuizNames);
-        quizList.setItems(quizNames);
-        quizList.setCellFactory(param -> new XCell());
-    }
-
-    public void selectedQuiz(MouseEvent mouseEvent) {
-        selectedItem = quizList.getSelectionModel().getSelectedItem();
-        System.out.println(selectedItem);
-    }
-
-    public void createQuiz(ActionEvent actionEvent) {
-        //code to change scene to create quiz
     }
 
 
