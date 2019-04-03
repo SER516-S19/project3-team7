@@ -2,10 +2,9 @@ package controller;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import model.QuizDetails;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +13,9 @@ import java.io.IOException;
  * Class to render Question and Answer from the Json file
  */
 public class ShowQuiz {
+
+    @FXML
+    public Label QuizName;
 
     public void fetchQuizDetails(String selectedQuiz){
         try {
@@ -29,6 +31,11 @@ public class ShowQuiz {
     public void endQuiz(){}
 
     public void showNextQuestion(){}
+
+    public void setQuizTitleLabel(String selectedQuiz) {
+
+        QuizName.setText(selectedQuiz);
+    }
 
 }
 
