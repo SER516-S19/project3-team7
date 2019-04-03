@@ -1,3 +1,5 @@
+import controller.ProfessorController;
+import controller.QuizController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,16 +9,26 @@ import javafx.stage.Stage;
 public class ProfessorApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage quizWindow) throws Exception {
 
-        primaryStage.setTitle("Hello Professor");
+        quizWindow.setTitle("Hello Professor");
 
-        Parent root = FXMLLoader.load(getClass().getResource("view/professor.fxml"));
-//        Parent root1 = FXMLLoader.load(getClass().getResource("view/CreateQuiz.fxml"));
-        primaryStage.setScene(new Scene(root, 800, 600));
-//        primaryStage.setScene(new Scene(root1, 800, 800));
+        FXMLLoader professorPaneLoader = new FXMLLoader(getClass().getResource("view/professor.fxml"));
+        Parent professorPane = professorPaneLoader.load();
+        Scene professorScene = new Scene(professorPane, 800, 600);
 
-        primaryStage.show();
+        FXMLLoader createQuizPaneLoader = new FXMLLoader(getClass().getResource("view/CreateQuiz.fxml"));
+        Parent createQuizPane = createQuizPaneLoader.load();
+        Scene createQuizScene = new Scene(createQuizPane, 800, 600);
+
+        ProfessorController professorPaneController = (ProfessorController) professorPaneLoader.getController();
+        professorPaneController.setCreateQuizScene(createQuizScene);
+
+        QuizController createQuizPaneController = (QuizController) createQuizPaneLoader.getController();
+        createQuizPaneController.setProfessorScene(professorScene);
+
+        quizWindow.setScene(professorScene);
+        quizWindow.show();
     }
 
 

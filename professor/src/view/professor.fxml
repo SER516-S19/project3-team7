@@ -8,7 +8,7 @@
         <VBox layoutX="100.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0">
             <children>
                 <HBox alignment="CENTER">
-                    <Button text="Create Quiz" onAction="#createQuiz" alignment="TOP_RIGHT">
+                    <Button text="Create Quiz" onAction="#openCreateQuizScene" alignment="TOP_RIGHT">
                         <HBox.margin>
                             <Insets bottom="40"/>
                         </HBox.margin>
