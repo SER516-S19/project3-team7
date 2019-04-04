@@ -2,15 +2,11 @@ package Utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Questions;
-//import model.QuestionImpl;
-
 import java.io.File;
 import java.io.IOException;
 
-//import model.Question;
 
 /**
- * Read README.md file to get rid of the errors.
  * JsonUtility class has method to convert an object to Json and store it in file.
  *
  * @author Nikhila Saini
