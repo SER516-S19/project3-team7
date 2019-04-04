@@ -39,29 +39,4 @@ public class JsonUtility {
             e.printStackTrace();
         }
     }
-
-    /*
-    public static void main(String a[]){
-        Question q1 = new Question();
-        q1.setTitle("How are you?");
-        q1.setOption("Good");
-        q1.setOption("Awesome");
-        q1.setOption("Bad");
-        q1.setOption("Not Sure");
-        q1.setCorrectAnswer("Awesome");
-
-        Question q2 = new Question();
-        q2.setTitle("Are you asurite?");
-        q2.setOption("Yes");
-        q2.setOption("No");
-        q2.setOption("Not sure");
-        q2.setOption("I like to not share");
-        q2.setCorrectAnswer("Yes");
-
-        QuestionImpl questions = new QuestionImpl();
-        questions.setQuestion(q1);
-        questions.setQuestion(q2);
-        new JsonUtility().writeToJson(questions, "SampleQuiz");
-    }
-    */
 }
