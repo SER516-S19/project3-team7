@@ -13,15 +13,13 @@ import java.io.IOException;
  * Read README.md file to get rid of the errors.
  * JsonUtility class has method to convert an object to Json and store it in file.
  *
- * @author Aravinda Sai Kondamari
- * @version 1.0
- * @since 1.0
+ * @author Nikhila Saini
  */
 
 public class JsonUtility {
 
     /**
-     * This method accepts a QuestionImpl object converts it in to Json and stores
+     * This method accepts a Question object converts it in to Json and stores
      * in a file with the name from "title" parameter.
      *
      * @param questions
