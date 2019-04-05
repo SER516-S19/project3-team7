@@ -3,14 +3,20 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Question;
 import model.QuizDetails;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +27,7 @@ public class ShowQuiz {
     @FXML
     public Label QuizName;
     
-    private QuizDetails quiz;
+    private List<Question> questions = new ArrayList<>();
     
     @FXML
     private Text questionTitle;
@@ -40,14 +46,17 @@ public class ShowQuiz {
 	
 	@FXML
 	public RadioButton option4;
-
+	
+	@FXML
+	public Button nextButtonName;
     
     private int currentQuestionNumber = 1;
 
     public void fetchQuizDetails(String selectedQuiz){
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            quiz = objectMapper.readValue(new File("quiz/"+selectedQuiz+".json"), QuizDetails.class);
+            QuizDetails quiz = objectMapper.readValue(new File("quiz/"+selectedQuiz+".json"), QuizDetails.class);
+            questions.addAll(quiz.getQuestions());
             setQuestions();
             System.out.println(quiz);
         }
@@ -56,13 +65,18 @@ public class ShowQuiz {
         catch (IOException e) { e.printStackTrace(); }
     }
 
-    public void endQuiz(){}
+	public void endQuiz() {
+	}
 
 	public void showNextQuestion() {
-		if (currentQuestionNumber <= quiz.getQuestions().size()) {
+		int quizSize = questions.size();
+
+		if (currentQuestionNumber <= quizSize) {
 			setQuestions();
-		} else {
-			
+		}
+
+		if (currentQuestionNumber - 1 == quizSize) {
+			nextButtonName.setText("Submit");
 		}
 	}
 
@@ -73,18 +87,22 @@ public class ShowQuiz {
     
     
 	public void setQuestions() {
-		Question question = quiz.getQuestions().get(currentQuestionNumber - 1);
+		Question question = questions.get(currentQuestionNumber - 1);
 		questionNumber.setText(currentQuestionNumber + ")");
 		questionTitle.setText(question.getTitle());
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
-
+		
+		option1.setSelected(false);
+		option2.setSelected(false);
+		option3.setSelected(false);
+		option4.setSelected(false);
+		
 		option1.setText(options.get(0));
 		option2.setText(options.get(1));
 		option3.setText(options.get(2));
 		option4.setText(options.get(3));
 	}
-
 
 }
 

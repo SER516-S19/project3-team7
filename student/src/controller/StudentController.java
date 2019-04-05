@@ -24,7 +24,7 @@ public class StudentController implements Initializable {
     private ListView<String> quizList;
 
     private ObservableList quizNames =  FXCollections.observableArrayList();
-
+    
     ShowQuiz questionAnswerObj;
 
     @Override
