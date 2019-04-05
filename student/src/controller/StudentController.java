@@ -25,7 +25,7 @@ public class StudentController implements Initializable {
 
     private ObservableList quizNames =  FXCollections.observableArrayList();
 
-    ShowQuiz questionAnswerObj = new ShowQuiz();
+    ShowQuiz questionAnswerObj;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,8 +42,9 @@ public class StudentController implements Initializable {
     private void setQuizTitle(String selectedQuiz) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
         Parent root = loader.load();
-        ShowQuiz quizController = loader.getController();
-        quizController.setQuizTitleLabel(selectedQuiz);
+        questionAnswerObj = loader.getController();
+        questionAnswerObj.setQuizTitleLabel(selectedQuiz);
+        questionAnswerObj.fetchQuizDetails(selectedQuiz);
         quizList.getScene().setRoot(root);
     }
 
@@ -56,7 +57,6 @@ public class StudentController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                questionAnswerObj.fetchQuizDetails(selectedQuiz);
             }
         });
     }
