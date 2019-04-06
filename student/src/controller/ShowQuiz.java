@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Question;
@@ -100,6 +101,12 @@ public class ShowQuiz {
 		questionTitle.setText(question.getTitle());
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
+		ToggleGroup group = new ToggleGroup();
+		
+		option1.setToggleGroup(group);
+		option2.setToggleGroup(group);
+		option3.setToggleGroup(group);
+		option4.setToggleGroup(group);
 		
 		option1.setSelected(false);
 		option2.setSelected(false);
