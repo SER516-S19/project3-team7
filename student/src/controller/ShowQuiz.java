@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Question;
@@ -48,7 +47,7 @@ public class ShowQuiz {
 	public RadioButton option4;
 	
 	@FXML
-	public Button nextButtonName;
+	public Button nextButton;
     
     private int currentQuestionNumber = 1;
 
@@ -66,6 +65,15 @@ public class ShowQuiz {
     }
 
 	public void endQuiz() {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
+			Stage primaryStage = new Stage();
+		        primaryStage.setTitle("Hello Student");
+		        primaryStage.setScene(new Scene(root, 800, 600));
+		        primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showNextQuestion() {
@@ -76,7 +84,7 @@ public class ShowQuiz {
 		}
 
 		if (currentQuestionNumber - 1 == quizSize) {
-			nextButtonName.setText("Submit");
+			nextButton.setText("Submit");
 		}
 	}
 
