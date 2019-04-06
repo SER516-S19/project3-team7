@@ -70,6 +70,15 @@ public class ShowQuiz {
 	}
 
 	public void endQuiz() {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("Hello Student");
+			primaryStage.setScene(new Scene(root, 800, 600));
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void showNextQuestion() {
