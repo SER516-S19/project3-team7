@@ -21,7 +21,7 @@
             </Label>
          </children>
       </VBox>
-      <Text layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QNo" />
+      <Text layoutX="10.0" fx:id="questionNumber" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QNo" />
       <Text fx:id="questionTitle" layoutX="50.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question">
          <font>
             <Font name="Arial" size="13.0" />
