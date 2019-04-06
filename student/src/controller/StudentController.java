@@ -39,8 +39,10 @@ public class StudentController implements Initializable {
         quizList.getItems().addAll(quizNames);
     }
 
+    public FXMLLoader loader;
+
     private void setQuizTitle(String selectedQuiz) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
+        loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
         Parent root = loader.load();
         ShowQuiz quizController = loader.getController();
         quizController.setQuizTitleLabel(selectedQuiz);
@@ -56,7 +58,8 @@ public class StudentController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                questionAnswerObj.fetchQuizDetails(selectedQuiz);
+                ShowQuiz quizController = loader.getController();
+                quizController.fetchQuizDetails(selectedQuiz);
             }
         });
     }
