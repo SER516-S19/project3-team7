@@ -26,6 +26,10 @@ public class ShowQuiz {
 	public Label QuizName;
 
 	private List<Question> questions = new ArrayList<>();
+	
+	private List<Question> queWithIncorrectAns = null;
+	private ToggleGroup radioButtonGroup = null;
+	private String selectedAns = null;
 
 	StudentModel studentModel = new StudentModel();
 
@@ -51,12 +55,14 @@ public class ShowQuiz {
 	public Button nextButton;
 
 	private int currentQuestionNumber = 1;
+	private int queNo = 0;
 
 	public void loadQuiz(String selectedQuiz) {
 		setQuizTitleLabel(selectedQuiz);
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
 		questions.addAll(quiz.getQuestions());
 		setQuestions();
+		queWithIncorrectAns = new ArrayList<>();
 	}
 
 	public void endQuiz() {
@@ -75,13 +81,20 @@ public class ShowQuiz {
 		int quizSize = questions.size();
 		
 		String submissionType = nextButton.getText();
-		System.out.println("Button type is : "+ submissionType);
+		//System.out.println("Button type is : "+ submissionType);
 		
 		if("Submit".equalsIgnoreCase(submissionType)) {
 			verifySubmittedQuiz();
 		}else {
 			if (currentQuestionNumber <= quizSize) {
 				setQuestions();
+				System.out.println(queNo);
+				Question currentQuestion = questions.get(queNo++);
+				if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
+					if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
+						queWithIncorrectAns.add(currentQuestion);
+					}
+				}
 			}
 			if (currentQuestionNumber - 1 == quizSize) {
 				nextButton.setText("Submit");	
@@ -91,8 +104,40 @@ public class ShowQuiz {
 		
 	}
 	
+	public void setSelectedRadioButton() {
+		if(option1.isSelected()) {
+			System.out.println("Selected :"+option1.getText());
+			selectedAns = option1.getText();
+		}
+		if(option2.isSelected()) {
+			System.out.println("Selected :"+option2.getText());
+			selectedAns = option2.getText();
+		}
+		if(option3.isSelected()) {
+			System.out.println("Selected :"+option3.getText());
+			selectedAns = option3.getText();
+		}
+		if(option4.isSelected()) {
+			System.out.println("Selected :"+option4.getText());
+			selectedAns = option4.getText();
+		}
+		
+	}
+	
 	public void verifySubmittedQuiz() {
+		System.out.println(queNo);
+		Question currentQuestion = questions.get(queNo++);
+		if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
+			if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
+				queWithIncorrectAns.add(currentQuestion);
+			}
+		}
 		System.out.println("Verify your submitted quiz.");
+		for(Question q : queWithIncorrectAns) {
+			System.out.println(q.getTitle());
+		}
+		System.out.println("Verify end.");
+		queNo = 0;
 	}
 
 	private void setQuizTitleLabel(String selectedQuiz) {
@@ -106,12 +151,13 @@ public class ShowQuiz {
 		questionTitle.setText(question.getTitle());
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
-		ToggleGroup group = new ToggleGroup();
-
-		option1.setToggleGroup(group);
-		option2.setToggleGroup(group);
-		option3.setToggleGroup(group);
-		option4.setToggleGroup(group);
+		
+		radioButtonGroup = new ToggleGroup();
+			
+		option1.setToggleGroup(radioButtonGroup);
+		option2.setToggleGroup(radioButtonGroup);
+		option3.setToggleGroup(radioButtonGroup);
+		option4.setToggleGroup(radioButtonGroup);
 
 		option1.setSelected(false);
 		option2.setSelected(false);
