@@ -30,10 +30,10 @@
          </font>
       </Text>
       </HBox>
-      <RadioButton fx:id="option1" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" />
-      <RadioButton fx:id="option2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" />
-      <RadioButton fx:id="option3" layoutX="10.0" layoutY="130.0" mnemonicParsing="false"  />
-      <RadioButton fx:id="option4" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" />
+      <RadioButton fx:id="option1" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#setSelectedRadioButton" />
+      <RadioButton fx:id="option2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" onAction="#setSelectedRadioButton"/>
+      <RadioButton fx:id="option3" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#setSelectedRadioButton" />
+      <RadioButton fx:id="option4" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#setSelectedRadioButton" />
       <HBox alignment="CENTER" layoutY="220.0" prefHeight="100.0" prefWidth="600.0">
          <children>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#endQuiz" text="Give Up">
