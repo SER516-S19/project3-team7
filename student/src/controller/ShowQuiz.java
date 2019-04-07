@@ -73,14 +73,26 @@ public class ShowQuiz {
 
 	public void showNextQuestion() {
 		int quizSize = questions.size();
-
-		if (currentQuestionNumber <= quizSize) {
-			setQuestions();
+		
+		String submissionType = nextButton.getText();
+		System.out.println("Button type is : "+ submissionType);
+		
+		if("Submit".equalsIgnoreCase(submissionType)) {
+			verifySubmittedQuiz();
+		}else {
+			if (currentQuestionNumber <= quizSize) {
+				setQuestions();
+			}
+			if (currentQuestionNumber - 1 == quizSize) {
+				nextButton.setText("Submit");	
+			}
 		}
-
-		if (currentQuestionNumber - 1 == quizSize) {
-			nextButton.setText("Submit");
-		}
+		
+		
+	}
+	
+	public void verifySubmittedQuiz() {
+		System.out.println("Verify your submitted quiz.");
 	}
 
 	private void setQuizTitleLabel(String selectedQuiz) {
