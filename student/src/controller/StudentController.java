@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
+import model.StudentModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,7 @@ public class StudentController implements Initializable {
 
 	private ObservableList quizNames = FXCollections.observableArrayList();
 
-	ShowQuiz questionAnswerObj;
+	private StudentModel studentModel = new StudentModel();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,19 +33,19 @@ public class StudentController implements Initializable {
 		listViewEventListener();
 	}
 
-	public void getQuizNames() {
-		quizNames.add("Quiz1");
-		quizNames.add("Quiz2");
-		quizNames.add("Quiz3");
+	private void getQuizNames() {
+        quizNames.clear();
+		quizNames.addAll(studentModel.getQuizNames());
 		quizList.getItems().addAll(quizNames);
 	}
 
-	private void setQuizTitle(String selectedQuiz) throws IOException {
+
+	private void loadQuiz(String selectedQuiz) throws IOException {
+		ShowQuiz questionAnswerObj;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
 		Parent root = loader.load();
 		questionAnswerObj = loader.getController();
-		questionAnswerObj.setQuizTitleLabel(selectedQuiz);
-		questionAnswerObj.fetchQuizDetails(selectedQuiz);
+		questionAnswerObj.loadQuiz(selectedQuiz);
 		quizList.getScene().setRoot(root);
 	}
 
@@ -53,7 +54,7 @@ public class StudentController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String selectedQuiz) {
 				try {
-					setQuizTitle(selectedQuiz);
+					loadQuiz(selectedQuiz);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

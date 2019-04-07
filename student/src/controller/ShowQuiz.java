@@ -1,8 +1,5 @@
 package controller;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,13 +12,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Question;
 import model.QuizDetails;
-import java.io.File;
+import model.StudentModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class to render Question and Answer from the Json file
+ * Class to render the Quiz from the Json file
  */
 public class ShowQuiz {
 
@@ -29,6 +26,8 @@ public class ShowQuiz {
 	public Label QuizName;
 
 	private List<Question> questions = new ArrayList<>();
+
+	StudentModel studentModel = new StudentModel();
 
 	@FXML
 	private Text questionTitle;
@@ -53,20 +52,11 @@ public class ShowQuiz {
 
 	private int currentQuestionNumber = 1;
 
-	public void fetchQuizDetails(String selectedQuiz) {
-		try {
-			ObjectMapper objectMapper = new ObjectMapper();
-			QuizDetails quiz = objectMapper.readValue(new File("quiz/" + selectedQuiz + ".json"), QuizDetails.class);
-			questions.addAll(quiz.getQuestions());
-			setQuestions();
-			System.out.println(quiz);
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void loadQuiz(String selectedQuiz) {
+		setQuizTitleLabel(selectedQuiz);
+		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
+		questions.addAll(quiz.getQuestions());
+		setQuestions();
 	}
 
 	public void endQuiz() {
@@ -93,12 +83,12 @@ public class ShowQuiz {
 		}
 	}
 
-	public void setQuizTitleLabel(String selectedQuiz) {
+	private void setQuizTitleLabel(String selectedQuiz) {
 
 		QuizName.setText(selectedQuiz);
 	}
 
-	public void setQuestions() {
+	private void setQuestions() {
 		Question question = questions.get(currentQuestionNumber - 1);
 		questionNumber.setText(currentQuestionNumber + ")");
 		questionTitle.setText(question.getTitle());
