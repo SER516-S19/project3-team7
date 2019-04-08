@@ -58,7 +58,7 @@ public class ProfessorController implements Initializable {
         for (File file : allFiles)
             listOfQuizNames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
         Collections.sort(listOfQuizNames);
-        quizList.getItems().clear();
+        quizList.refresh();
         quizNames.clear();
         quizNames.addAll(listOfQuizNames);
         quizList.setItems(quizNames);
@@ -74,14 +74,17 @@ public class ProfessorController implements Initializable {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
         Pane pane = new Pane();
-        Button button = new Button("Edit Quiz");
+        Button edit = new Button("Edit Quiz");
+        Button delete = new Button("Delete");
         String lastItem;
 
         XCell() {
             super();
-            hbox.getChildren().addAll(label, pane, button);
+            hbox.getChildren().addAll(label, pane, edit, delete);
+            hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
-            button.setOnAction(event -> System.out.println(lastItem + " : " + event));
+            edit.setOnAction(event -> System.out.println("Edit " + lastItem));
+            delete.setOnAction(event -> System.out.println("Delete " +lastItem));
         }
 
         @Override
