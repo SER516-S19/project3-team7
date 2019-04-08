@@ -39,7 +39,11 @@ public class StudentController implements Initializable {
 		quizList.getItems().addAll(quizNames);
 	}
 
-
+	/**
+	 * To load the Quiz in the window
+	 * @param selectedQuiz
+	 * @throws IOException
+	 */
 	private void loadQuiz(String selectedQuiz) throws IOException {
 		ShowQuiz questionAnswerObj;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
@@ -61,5 +65,4 @@ public class StudentController implements Initializable {
 			}
 		});
 	}
-
 }

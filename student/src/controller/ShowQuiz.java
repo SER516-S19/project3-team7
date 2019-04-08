@@ -19,45 +19,41 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Class to render the Quiz from the Json file
+ * Class to render the Quiz from the JSON file
  */
 public class ShowQuiz {
 
 	@FXML
 	public Label QuizName;
-
-	private List<Question> questions = new ArrayList<>();
-	
-	private List<Question> queWithIncorrectAns = null;
-	private ToggleGroup radioButtonGroup = null;
-	private String selectedAns = null;
-
-	StudentModel studentModel = new StudentModel();
-
 	@FXML
 	private Text questionTitle;
-
 	@FXML
 	private Text questionNumber;
 
-	@FXML
 	public RadioButton option1;
 
-	@FXML
 	public RadioButton option2;
 
-	@FXML
 	public RadioButton option3;
 
-	@FXML
 	public RadioButton option4;
 
-	@FXML
 	public Button nextButton;
 
-	private int currentQuestionNumber = 1;
-	private int queNo = 0;
+	private List<Question> questions = new ArrayList<>();
+	private List<Question> queWithIncorrectAns = null;
+	private ToggleGroup radioButtonGroup = null;
 
+	private String selectedAns = null;
+	private int questionNo = 0;
+	private int currentQuestionNumber = 1;
+
+	StudentModel studentModel = new StudentModel();
+
+	/**
+	 * Function to load the question and options
+	 * @param selectedQuiz
+	 */
 	public void loadQuiz(String selectedQuiz) {
 		setQuizTitleLabel(selectedQuiz);
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
@@ -66,11 +62,17 @@ public class ShowQuiz {
 		queWithIncorrectAns = new LinkedList();
 	}
 
+	/**
+	 * Function to load the wrong answered questions
+	 */
 	public void loadWrongAnswerdQuestions() {
 		setQuizTitleLabel(QuizName.getText());
 		setWrongQuestions();
 	}
-	
+
+	/**
+	 * Function to end or give up the quiz
+	 */
 	public void endQuiz() {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
@@ -83,34 +85,31 @@ public class ShowQuiz {
 		}
 	}
 
+	/**
+	 * Function for next button click
+	 */
 	public void showNextQuestion() {
 		int quizSize = questions.size();
-		
 		String submissionType = nextButton.getText();
-		//System.out.println("Button type is : "+ submissionType);
-		
 		if("Submit".equalsIgnoreCase(submissionType)) {
 			verifySubmittedQuiz();
 		}else {
 			if (currentQuestionNumber <= quizSize) {
 				setQuestions();
-				System.out.println(queNo);
-				Question currentQuestion = questions.get(queNo++);
+				System.out.println(questionNo);
+				Question currentQuestion = questions.get(questionNo++);
 				if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
 					if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 						queWithIncorrectAns.add(currentQuestion);
 					}
 				}
 			}
-			
 			if (currentQuestionNumber - 1 == quizSize) {
 				nextButton.setText("Submit");	
 			}
 		}
-		
-		
 	}
-	
+
 	public void setSelectedRadioButton() {
 		if(option1.isSelected()) {
 			System.out.println("Selected :"+option1.getText());
@@ -132,8 +131,8 @@ public class ShowQuiz {
 	}
 	
 	public void verifySubmittedQuiz() {
-		System.out.println(queNo);
-		Question currentQuestion = questions.get(queNo++);
+		System.out.println(questionNo);
+		Question currentQuestion = questions.get(questionNo++);
 		if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
 			if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 				queWithIncorrectAns.add(currentQuestion);
@@ -141,23 +140,26 @@ public class ShowQuiz {
 		}
 		System.out.println("Verify your submitted quiz.");
 		if(queWithIncorrectAns.size()==0) {
+			endQuiz();
 			System.out.println("All answers are correct!!!");
 		}else {
-			queNo = 0;
+			questionNo = 0;
 			nextButton.setText("Next");
 			loadWrongAnswerdQuestions();
 			queWithIncorrectAns.clear();
 		}
-		
 	}
 
 	private void setQuizTitleLabel(String selectedQuiz) {
-
 		QuizName.setText(selectedQuiz);
 	}
+
+	/**
+	 * To set the questions which answered wrongly
+	 */
 	private void setWrongQuestions() {
-		Question question = queWithIncorrectAns.get(queNo++);
-		questionNumber.setText(queNo + ")");
+		Question question = queWithIncorrectAns.get(questionNo++);
+		questionNumber.setText(questionNo + ")");
 		questionTitle.setText(question.getTitle());
 		List<String> options = question.getOptions();
 		
@@ -179,13 +181,15 @@ public class ShowQuiz {
 		option4.setText(options.get(3));
 	}
 
+	/**
+	 * To set the Questions and Answers
+	 */
 	private void setQuestions() {
 		Question question = questions.get(currentQuestionNumber - 1);
 		questionNumber.setText(currentQuestionNumber + ")");
 		questionTitle.setText(question.getTitle());
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
-		
 		radioButtonGroup = new ToggleGroup();
 			
 		option1.setToggleGroup(radioButtonGroup);
@@ -203,5 +207,4 @@ public class ShowQuiz {
 		option3.setText(options.get(2));
 		option4.setText(options.get(3));
 	}
-
 }
