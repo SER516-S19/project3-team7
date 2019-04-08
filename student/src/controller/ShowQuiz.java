@@ -15,6 +15,7 @@ import model.QuizDetails;
 import model.StudentModel;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -62,9 +63,14 @@ public class ShowQuiz {
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
 		questions.addAll(quiz.getQuestions());
 		setQuestions();
-		queWithIncorrectAns = new ArrayList<>();
+		queWithIncorrectAns = new LinkedList();
 	}
 
+	public void loadWrongAnswerdQuestions() {
+		setQuizTitleLabel(QuizName.getText());
+		setWrongQuestions();
+	}
+	
 	public void endQuiz() {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
@@ -96,6 +102,7 @@ public class ShowQuiz {
 					}
 				}
 			}
+			
 			if (currentQuestionNumber - 1 == quizSize) {
 				nextButton.setText("Submit");	
 			}
@@ -133,16 +140,43 @@ public class ShowQuiz {
 			}
 		}
 		System.out.println("Verify your submitted quiz.");
-		for(Question q : queWithIncorrectAns) {
-			System.out.println(q.getTitle());
+		if(queWithIncorrectAns.size()==0) {
+			System.out.println("All answers are correct!!!");
+		}else {
+			queNo = 0;
+			nextButton.setText("Next");
+			loadWrongAnswerdQuestions();
+			queWithIncorrectAns.clear();
 		}
-		System.out.println("Verify end.");
-		queNo = 0;
+		
 	}
 
 	private void setQuizTitleLabel(String selectedQuiz) {
 
 		QuizName.setText(selectedQuiz);
+	}
+	private void setWrongQuestions() {
+		Question question = queWithIncorrectAns.get(queNo++);
+		questionNumber.setText(queNo + ")");
+		questionTitle.setText(question.getTitle());
+		List<String> options = question.getOptions();
+		
+		radioButtonGroup = new ToggleGroup();
+			
+		option1.setToggleGroup(radioButtonGroup);
+		option2.setToggleGroup(radioButtonGroup);
+		option3.setToggleGroup(radioButtonGroup);
+		option4.setToggleGroup(radioButtonGroup);
+
+		option1.setSelected(false);
+		option2.setSelected(false);
+		option3.setSelected(false);
+		option4.setSelected(false);
+
+		option1.setText(options.get(0));
+		option2.setText(options.get(1));
+		option3.setText(options.get(2));
+		option4.setText(options.get(3));
 	}
 
 	private void setQuestions() {
