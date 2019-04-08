@@ -17,7 +17,6 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,8 +51,7 @@ public class ProfessorController implements Initializable {
     }
 
     private void loadQuizzes() {
-        String cwd = System.getProperty("user.dir").replaceFirst("professor", "quiz");
-        File newFile = new File(cwd);
+        File newFile = new File("../quiz");
         File[] allFiles = newFile.listFiles((dir1, name) -> name.startsWith("quiz") && name.endsWith(".json"));
 
         assert allFiles != null;
@@ -70,11 +68,6 @@ public class ProfessorController implements Initializable {
     public void selectQuiz() {
         String selectedItem = quizList.getSelectionModel().getSelectedItem();
         System.out.println(selectedItem);
-    }
-
-    public void createQuiz(ActionEvent actionEvent) throws IOException {
-        //code to change scene to create quiz
-
     }
 
     static class XCell extends ListCell<String> {

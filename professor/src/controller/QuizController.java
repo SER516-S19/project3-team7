@@ -1,30 +1,23 @@
 package controller;
 
-import com.sun.istack.internal.localization.NullLocalizable;
-import javafx.collections.ObservableList;
+import Utilities.JsonUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import model.Questions;
-import Utilities.JsonUtility;
-import javafx.fxml.FXMLLoader;
-
-//import java.awt.*;
-import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Questions;
 import model.Quiz;
 
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+//import java.awt.*;
 
 public class QuizController implements Initializable {
 
@@ -60,13 +53,13 @@ public class QuizController implements Initializable {
         professorScene = scene;
     }
 
-    public void openProfessorScene(javafx.event.ActionEvent actionEvent){
+    public void openProfessorScene(javafx.event.ActionEvent actionEvent) {
         Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        if(!quizName.getText().trim().isEmpty()) {
+        if (!quizName.getText().trim().isEmpty()) {
             quizWindow.setScene(professorScene);
             addQuestion();
             JsonUtility file = new JsonUtility();
-            file.writeToJson(new_quiz,quizName.getText());
+            file.writeToJson(new_quiz, quizName.getText());
         } else {
             errorQuizName.setText("Please enter the quiz name.");
         }
@@ -79,7 +72,7 @@ public class QuizController implements Initializable {
 
     public void addQuestion() {
 
-        if(quizName.getText().trim().isEmpty()) {
+        if (quizName.getText().trim().isEmpty()) {
             errorQuizName.setText("Please enter the quiz name.");
             return;
         } else {
