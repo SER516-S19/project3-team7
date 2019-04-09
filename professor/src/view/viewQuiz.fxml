@@ -36,6 +36,20 @@
                                  <center>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <bottom>
+                                          <BorderPane prefHeight="51.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+                                             <left>
+                                                <Button mnemonicParsing="false" text="Previous" BorderPane.alignment="CENTER" />
+                                             </left>
+                                             <right>
+                                                <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
+                                             </right>
+                                             <top>
+                                                <Button mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER" />
+                                             </top>
+                                             <bottom>
+                                                <Button mnemonicParsing="false" text="Delete" BorderPane.alignment="CENTER" />
+                                             </bottom>
+                                          </BorderPane>
                                        </bottom>
                                     </BorderPane>
                                  </center>
