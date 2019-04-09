@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -36,21 +35,13 @@
                                  <center>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <bottom>
-                                          <BorderPane prefHeight="51.0" prefWidth="626.0" BorderPane.alignment="CENTER">
-                                             <left>
-                                                <Button mnemonicParsing="false" text="Previous" BorderPane.alignment="CENTER" />
-                                             </left>
-                                             <right>
-                                                <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
-                                             </right>
-                                             <top>
-                                                <Button mnemonicParsing="false" text="Edit" BorderPane.alignment="CENTER" />
-                                             </top>
-                                             <bottom>
-                                                <Button mnemonicParsing="false" text="Delete" BorderPane.alignment="CENTER" />
-                                             </bottom>
-                                          </BorderPane>
                                        </bottom>
+                                       <left>
+                                          <Button mnemonicParsing="false" text="Previous" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
+                                       </right>
                                     </BorderPane>
                                  </center>
                               </BorderPane>
