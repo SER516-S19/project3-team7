@@ -57,7 +57,7 @@ public class ProfessorController implements Initializable {
     }
 
     private void loadQuizzes() {
-        File newFile = new File("../quiz");
+        File newFile = new File("quiz");
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
 
         assert allFiles != null;

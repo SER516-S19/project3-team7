@@ -1,20 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfessorController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfessorController">
     <children>
         <VBox layoutX="100.0" layoutY="60.0" prefHeight="400.0" prefWidth="600.0">
             <children>
-                <HBox alignment="CENTER">
-                    <Button text="Create Quiz" onAction="#openCreateQuizScene" alignment="TOP_RIGHT">
-                        <HBox.margin>
-                            <Insets bottom="40"/>
-                        </HBox.margin>
-                    </Button>
-                </HBox>
-                <ListView fx:id="quizList" onMouseClicked="#selectQuiz"/>
+                <ListView fx:id="quizList" onMouseClicked="#selectQuiz">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></ListView>
+            <Button mnemonicParsing="false" onAction="#openCreateQuizScene" text="Create Quiz">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
             </children>
         </VBox>
     </children>
