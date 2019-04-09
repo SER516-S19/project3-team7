@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-//import java.awt.*;
+/**
+ * ProfessorController class has methods to load professor scene and save quiz questions.
+ *
+ * @author Darshan Prakash,
+ */
 
 public class QuizController implements Initializable {
 

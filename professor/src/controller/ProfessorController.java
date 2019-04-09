@@ -22,6 +22,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+/**
+ * ProfessorController class has methods to load quiz list and change to create quiz scene.
+ *
+ * @author Darshan Prakash
+ */
+
 public class ProfessorController implements Initializable {
 
     @FXML
@@ -52,7 +58,7 @@ public class ProfessorController implements Initializable {
 
     private void loadQuizzes() {
         File newFile = new File("../quiz");
-        File[] allFiles = newFile.listFiles((dir1, name) -> name.startsWith("quiz") && name.endsWith(".json"));
+        File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
 
         assert allFiles != null;
         for (File file : allFiles)
@@ -84,7 +90,7 @@ public class ProfessorController implements Initializable {
             hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
             edit.setOnAction(event -> System.out.println("Edit " + lastItem));
-            delete.setOnAction(event -> System.out.println("Delete " +lastItem));
+            delete.setOnAction(event -> System.out.println("Delete " + lastItem));
         }
 
         @Override
@@ -101,7 +107,5 @@ public class ProfessorController implements Initializable {
             }
         }
     }
-
-
 }
 

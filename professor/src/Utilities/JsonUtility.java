@@ -1,12 +1,10 @@
 package Utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import model.Questions;
 import model.Quiz;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -26,7 +24,7 @@ public class JsonUtility {
      */
     public void writeToJson(Quiz quiz, String title) {
         ObjectMapper objectMapper = new ObjectMapper();
-        String filePath = "quiz/" + title + ".json";
+        String filePath = "../quiz/" + title + ".json";
         try {
             File newFile = new File(filePath);
             newFile.createNewFile();

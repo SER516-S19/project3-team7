@@ -6,6 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * ProfessorApplication class has method to facilitate change of scenes.
+ *
+ * @author Darshan Prakash
+ */
+
 public class ProfessorApplication extends Application {
 
     @Override
@@ -21,10 +27,10 @@ public class ProfessorApplication extends Application {
         Parent createQuizPane = createQuizPaneLoader.load();
         Scene createQuizScene = new Scene(createQuizPane, 800, 600);
 
-        ProfessorController professorPaneController = (ProfessorController) professorPaneLoader.getController();
+        ProfessorController professorPaneController = professorPaneLoader.getController();
         professorPaneController.setCreateQuizScene(createQuizScene);
 
-        QuizController createQuizPaneController = (QuizController) createQuizPaneLoader.getController();
+        QuizController createQuizPaneController = createQuizPaneLoader.getController();
         createQuizPaneController.setProfessorScene(professorScene);
 
         quizWindow.setScene(professorScene);
