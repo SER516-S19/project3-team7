@@ -65,9 +65,8 @@ public class ShowQuiz {
 	 * Function to load the wrong answered questions
 	 */
 	public void loadWrongAnswerdQuestions() {
-		System.out.println("loadWrongAnswerdQuestions : "+queWithIncorrectAns);
 		setQuizTitleLabel(QuizName.getText());
-		setWrongQuestions();
+		setQuestions();
 	}
 
 	/**
@@ -96,10 +95,10 @@ public class ShowQuiz {
 			verifySubmittedQuiz();
 		}else {
 			if (currentQuestionNumber < quizSize) {
-				setQuestions();
 				System.out.println("currentQuestionNumber : "+currentQuestionNumber);
 				System.out.println("questions.get(currentQuestionNumber-1) : "+questions.get(currentQuestionNumber-1));
 				Question currentQuestion = questions.get(currentQuestionNumber-1);
+				System.out.println(selectedAns + " : "+ currentQuestion.getCorrectAnswer());
 				if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
 					if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 						queWithIncorrectAns.add(currentQuestion);
@@ -110,6 +109,7 @@ public class ShowQuiz {
 						}
 					}
 				}
+				setQuestions();
 			}
 			if (currentQuestionNumber == quizSize) {
 				nextButton.setText("Submit");	
@@ -180,32 +180,7 @@ public class ShowQuiz {
 		QuizName.setText(selectedQuiz);
 	}
 
-	/**
-	 * To set the questions which answered wrongly
-	 */
-	private void setWrongQuestions() {
-		Question question = questions.get(currentQuestionNumber++);
-		questionNumber.setText(questionNo + ")");
-		questionTitle.setText(question.getTitle());
-		List<String> options = question.getOptions();
-		
-		radioButtonGroup = new ToggleGroup();
-			
-		option1.setToggleGroup(radioButtonGroup);
-		option2.setToggleGroup(radioButtonGroup);
-		option3.setToggleGroup(radioButtonGroup);
-		option4.setToggleGroup(radioButtonGroup);
 
-		option1.setSelected(false);
-		option2.setSelected(false);
-		option3.setSelected(false);
-		option4.setSelected(false);
-
-		option1.setText(options.get(0));
-		option2.setText(options.get(1));
-		option3.setText(options.get(2));
-		option4.setText(options.get(3));
-	}
 
 	/**
 	 * To set the Questions and Answers
