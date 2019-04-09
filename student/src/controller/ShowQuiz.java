@@ -40,13 +40,13 @@ public class ShowQuiz {
 
 	public Button nextButton;
 
-	private List<Question> questions = new ArrayList<>();
-	private List<Question> queWithIncorrectAns = null;
+	private List<Question> questions = new LinkedList();
+	private List<Question> queWithIncorrectAns = new ArrayList<>();
 	private ToggleGroup radioButtonGroup = null;
 
 	private String selectedAns = null;
 	private int questionNo = 0;
-	private int currentQuestionNumber = 1;
+	private int currentQuestionNumber = 0;
 
 	StudentModel studentModel = new StudentModel();
 
@@ -59,13 +59,13 @@ public class ShowQuiz {
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
 		questions.addAll(quiz.getQuestions());
 		setQuestions();
-		queWithIncorrectAns = new LinkedList();
 	}
 
 	/**
 	 * Function to load the wrong answered questions
 	 */
 	public void loadWrongAnswerdQuestions() {
+		System.out.println("loadWrongAnswerdQuestions : "+queWithIncorrectAns);
 		setQuizTitleLabel(QuizName.getText());
 		setWrongQuestions();
 	}
@@ -90,21 +90,28 @@ public class ShowQuiz {
 	 */
 	public void showNextQuestion() {
 		int quizSize = questions.size();
+		System.out.println("quizSize : "+quizSize);
 		String submissionType = nextButton.getText();
 		if("Submit".equalsIgnoreCase(submissionType)) {
 			verifySubmittedQuiz();
 		}else {
-			if (currentQuestionNumber <= quizSize) {
+			if (currentQuestionNumber < quizSize) {
 				setQuestions();
-				System.out.println(questionNo);
-				Question currentQuestion = questions.get(questionNo++);
+				System.out.println("currentQuestionNumber : "+currentQuestionNumber);
+				System.out.println("questions.get(currentQuestionNumber-1) : "+questions.get(currentQuestionNumber-1));
+				Question currentQuestion = questions.get(currentQuestionNumber-1);
 				if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
 					if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 						queWithIncorrectAns.add(currentQuestion);
+					}else {
+						if(queWithIncorrectAns.contains(currentQuestion)) {
+							queWithIncorrectAns.remove(currentQuestion);
+							System.out.println("showNextQuestion :"+queWithIncorrectAns);
+						}
 					}
 				}
 			}
-			if (currentQuestionNumber - 1 == quizSize) {
+			if (currentQuestionNumber == quizSize) {
 				nextButton.setText("Submit");	
 			}
 		}
@@ -131,22 +138,41 @@ public class ShowQuiz {
 	}
 	
 	public void verifySubmittedQuiz() {
-		System.out.println(questionNo);
-		Question currentQuestion = questions.get(questionNo++);
+		currentQuestionNumber--;
+		Question currentQuestion = questions.get(currentQuestionNumber);
 		if(selectedAns!=null && currentQuestion.getCorrectAnswer()!=null) {
+			System.out.println(selectedAns + " : "+ currentQuestion.getCorrectAnswer());
 			if(!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 				queWithIncorrectAns.add(currentQuestion);
+				System.out.println("verifySubmittedQuiz :"+queWithIncorrectAns);
+			}else {
+				System.out.println("verifySubmittedQuiz : "+queWithIncorrectAns.contains(currentQuestion));
+				if(queWithIncorrectAns.contains(currentQuestion)) {
+					queWithIncorrectAns.remove(currentQuestion);
+					System.out.println("verifySubmittedQuiz :"+queWithIncorrectAns);
+				}
 			}
 		}
+		
+		
 		System.out.println("Verify your submitted quiz.");
+		System.out.println();
+		System.out.println(queWithIncorrectAns);
 		if(queWithIncorrectAns.size()==0) {
 			endQuiz();
 			System.out.println("All answers are correct!!!");
 		}else {
-			questionNo = 0;
+			currentQuestionNumber = 0;
 			nextButton.setText("Next");
+			System.out.println();
+			System.out.println();
+			questions = new ArrayList<>(queWithIncorrectAns);
+			queWithIncorrectAns = new ArrayList<>();
+			System.out.println("questions : "+ questions);
+			System.out.println("queWithIncorrectAns : "+ queWithIncorrectAns);
+			System.out.println();
+			System.out.println();
 			loadWrongAnswerdQuestions();
-			queWithIncorrectAns.clear();
 		}
 	}
 
@@ -158,7 +184,7 @@ public class ShowQuiz {
 	 * To set the questions which answered wrongly
 	 */
 	private void setWrongQuestions() {
-		Question question = queWithIncorrectAns.get(questionNo++);
+		Question question = questions.get(currentQuestionNumber++);
 		questionNumber.setText(questionNo + ")");
 		questionTitle.setText(question.getTitle());
 		List<String> options = question.getOptions();
@@ -185,8 +211,10 @@ public class ShowQuiz {
 	 * To set the Questions and Answers
 	 */
 	private void setQuestions() {
-		Question question = questions.get(currentQuestionNumber - 1);
-		questionNumber.setText(currentQuestionNumber + ")");
+		System.out.println("-----"+currentQuestionNumber);
+		
+		Question question = questions.get(currentQuestionNumber);
+		questionNumber.setText(currentQuestionNumber+1 + ")");
 		questionTitle.setText(question.getTitle());
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
