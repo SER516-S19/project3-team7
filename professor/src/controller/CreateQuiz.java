@@ -60,13 +60,18 @@ public class CreateQuiz implements Initializable {
     public void openProfessorScene(javafx.event.ActionEvent actionEvent) {
         Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         if (!quizName.getText().trim().isEmpty()) {
-            quizWindow.setScene(professorScene);
             addQuestion();
             JsonUtility file = new JsonUtility();
             file.writeToJson(new_quiz, quizName.getText());
+            quizWindow.setScene(professorScene);
         } else {
             errorQuizName.setText("Please enter the quiz name.");
         }
+    }
+
+    public void home(javafx.event.ActionEvent actionEvent) {
+        Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        quizWindow.setScene(professorScene);
     }
 
     @Override
