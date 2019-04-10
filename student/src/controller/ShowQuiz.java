@@ -33,6 +33,9 @@ public class ShowQuiz {
 	
 	@FXML
 	private Text successMessage;
+	
+	@FXML
+	private Button giveupButton;
 
 	public RadioButton option1;
 
@@ -167,6 +170,7 @@ public class ShowQuiz {
 			successMessage.setText("Woah!!! You answered all questions correctly!");
 			successMessage.setFill(Color.GREEN);
 			nextButton.setDisable(true);
+			giveupButton.setText("Close");
 			System.out.println("All answers are correct!!!");
 		}else {
 			currentQuestionNumber = 0;

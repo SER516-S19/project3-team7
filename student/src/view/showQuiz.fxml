@@ -34,10 +34,10 @@
       <RadioButton fx:id="option2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" onAction="#setSelectedRadioButton"/>
       <RadioButton fx:id="option3" layoutX="10.0" layoutY="130.0" mnemonicParsing="false" onAction="#setSelectedRadioButton" />
       <RadioButton fx:id="option4" layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#setSelectedRadioButton" />
-      <Text fx:id="successMessage" layoutX="10.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+      <Text fx:id="successMessage" layoutX="10.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
       <HBox alignment="CENTER" layoutY="220.0" prefHeight="100.0" prefWidth="600.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#endQuiz" text="Give Up">
+            <Button fx:id="giveupButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#endQuiz" text="Give Up">
                <HBox.margin>
                   <Insets left="5.0" right="5.0" />
                </HBox.margin>
