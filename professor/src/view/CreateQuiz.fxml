@@ -91,6 +91,11 @@
                                 <Insets left="5.0" right="5.0" />
                             </HBox.margin>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#home" text="Home">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Button>
                     </children>
                 </HBox>
             </children>
