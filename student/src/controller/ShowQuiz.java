@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Question;
 import model.QuizDetails;
 import model.StudentModel;
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,6 +30,9 @@ public class ShowQuiz {
 	private Text questionTitle;
 	@FXML
 	private Text questionNumber;
+	
+	@FXML
+	private Text successMessage;
 
 	public RadioButton option1;
 
@@ -159,7 +163,10 @@ public class ShowQuiz {
 		System.out.println();
 		System.out.println(queWithIncorrectAns);
 		if(queWithIncorrectAns.size()==0) {
-			endQuiz();
+			//endQuiz();
+			successMessage.setText("Woah!!! You answered all questions correctly!");
+			successMessage.setFill(Color.GREEN);
+			nextButton.setDisable(true);
 			System.out.println("All answers are correct!!!");
 		}else {
 			currentQuestionNumber = 0;
