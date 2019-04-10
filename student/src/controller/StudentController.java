@@ -34,13 +34,14 @@ public class StudentController implements Initializable {
 	}
 
 	private void getQuizNames() {
-        quizNames.clear();
+		quizNames.clear();
 		quizNames.addAll(studentModel.getQuizNames());
 		quizList.getItems().addAll(quizNames);
 	}
 
 	/**
 	 * To load the Quiz in the window
+	 * 
 	 * @param selectedQuiz
 	 * @throws IOException
 	 */
