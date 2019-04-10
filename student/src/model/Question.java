@@ -2,6 +2,14 @@ package model;
 
 import java.util.List;
 
+/**
+ * Plain java class to map the Questions and Answers in Quiz
+ *
+ * @author : Jahnvi Rai
+ * @version : 1.0
+ * @since : 04/02/2019
+ */
+
 public class Question {
 
     private String title;

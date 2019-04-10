@@ -4,6 +4,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Launches the student application
+ */
 public class StudentApplication extends Application {
 
     @Override

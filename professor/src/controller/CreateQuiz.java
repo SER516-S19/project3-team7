@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * ProfessorController class has methods to load professor scene and save quiz questions.
+ * Controller to handle the creation of the Quiz
  *
  * @author Darshan Prakash,
  */
 
-public class QuizController implements Initializable {
+public class CreateQuiz implements Initializable {
 
     @FXML
     private TextField quizName;
@@ -49,7 +49,7 @@ public class QuizController implements Initializable {
     private Label errorQuizName;
 
     private List<Questions> questions = new ArrayList<Questions>();
-    Quiz new_quiz = new Quiz();
+    model.Quiz new_quiz = new model.Quiz();
 
     private Scene professorScene;
 

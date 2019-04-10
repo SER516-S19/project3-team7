@@ -2,11 +2,15 @@ package model;
 
 import java.util.List;
 
+/**
+ * Plain java class to store the the Questions and Answers in Quiz
+ */
+
 public class Questions {
 
-    public String title;
-    public String correctAnswer;
-    public List<String> options;
+    private String title;
+    private String correctAnswer;
+    private List<String> options;
 
     public List<String> getOptions() {
         return options;

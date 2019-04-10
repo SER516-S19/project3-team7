@@ -23,12 +23,12 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 
 /**
- * ProfessorController class has methods to load quiz list and change to create quiz scene.
+ * Controller to handle the requests when professor application launches
  *
  * @author Darshan Prakash
  */
 
-public class ProfessorController implements Initializable {
+public class Professor implements Initializable {
 
     @FXML
     private ListView<String> quizList;
@@ -48,7 +48,7 @@ public class ProfessorController implements Initializable {
         quizWindow.setScene(createQuizScene);
     }
 
-    public ProfessorController() {
+    public Professor() {
     }
 
     @Override

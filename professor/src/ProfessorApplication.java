@@ -1,5 +1,5 @@
-import controller.ProfessorController;
-import controller.QuizController;
+import controller.Professor;
+import controller.CreateQuiz;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * ProfessorApplication class has method to facilitate change of scenes.
+ * Launches the professor application
  *
  * @author Darshan Prakash
  */
@@ -27,10 +27,10 @@ public class ProfessorApplication extends Application {
         Parent createQuizPane = createQuizPaneLoader.load();
         Scene createQuizScene = new Scene(createQuizPane, 800, 600);
 
-        ProfessorController professorPaneController = professorPaneLoader.getController();
+        Professor professorPaneController = professorPaneLoader.getController();
         professorPaneController.setCreateQuizScene(createQuizScene);
 
-        QuizController createQuizPaneController = createQuizPaneLoader.getController();
+        CreateQuiz createQuizPaneController = createQuizPaneLoader.getController();
         createQuizPaneController.setProfessorScene(professorScene);
 
         quizWindow.setScene(professorScene);

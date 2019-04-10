@@ -3,15 +3,24 @@ package model;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Data Manipulation and Business Logic for the student
+ */
+
 public class StudentModel {
 
     private List<String> quizNames = new ArrayList<>();
+
+    /**
+     * Read the names of the quiz files created by the professor
+     *
+     * @return Quiz Names
+     */
 
     public List<String> getQuizNames() {
         File folder = new File("quiz");
@@ -22,6 +31,12 @@ public class StudentModel {
         return quizNames;
     }
 
+    /**
+     * Read the quiz details from the json files and parse it to java object
+     *
+     * @param quizName
+     * @return QuizDetails object
+     */
     public QuizDetails readQuizDetails(String quizName){
         QuizDetails quizDetails = null;
         try {

@@ -16,9 +16,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Class to display the list of Quiz to take
+ * Controller to handle the requests when student application launches
  */
-public class StudentController implements Initializable {
+
+public class Student implements Initializable {
 
 	@FXML
 	private ListView<String> quizList;
@@ -46,7 +47,7 @@ public class StudentController implements Initializable {
 	 * @throws IOException
 	 */
 	private void loadQuiz(String selectedQuiz) throws IOException {
-		ShowQuiz questionAnswerObj;
+		DisplayQuiz questionAnswerObj;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
 		Parent root = loader.load();
 		questionAnswerObj = loader.getController();

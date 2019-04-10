@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Question;
@@ -22,7 +19,7 @@ import java.util.List;
 /**
  * Class to render the Quiz from the JSON file
  */
-public class ShowQuiz {
+public class DisplayQuiz {
 
 	@FXML
 	public Label QuizName;
@@ -37,13 +34,13 @@ public class ShowQuiz {
 	@FXML
 	private Button giveupButton;
 
-	public RadioButton option1;
+	public RadioButton answerOption1;
 
-	public RadioButton option2;
+	public RadioButton answerOption2;
 
-	public RadioButton option3;
+	public RadioButton answerOption3;
 
-	public RadioButton option4;
+	public RadioButton answerOption4;
 
 	public Button nextButton;
 
@@ -126,25 +123,34 @@ public class ShowQuiz {
 		}
 	}
 
+	/**
+	 * Store student response for the Question
+	 */
 	public void setSelectedRadioButton() {
-		if (option1.isSelected()) {
-			System.out.println("Selected :" + option1.getText());
-			selectedAns = option1.getText();
+		if (answerOption1.isSelected()) {
+			System.out.println("Selected :" + answerOption1.getText());
+			selectedAns = answerOption1.getText();
 		}
-		if (option2.isSelected()) {
-			System.out.println("Selected :" + option2.getText());
-			selectedAns = option2.getText();
+		if (answerOption2.isSelected()) {
+			System.out.println("Selected :" + answerOption2.getText());
+			selectedAns = answerOption2.getText();
 		}
-		if (option3.isSelected()) {
-			System.out.println("Selected :" + option3.getText());
-			selectedAns = option3.getText();
+		if (answerOption3.isSelected()) {
+			System.out.println("Selected :" + answerOption3.getText());
+			selectedAns = answerOption3.getText();
 		}
-		if (option4.isSelected()) {
-			System.out.println("Selected :" + option4.getText());
-			selectedAns = option4.getText();
+		if (answerOption4.isSelected()) {
+			System.out.println("Selected :" + answerOption4.getText());
+			selectedAns = answerOption4.getText();
 		}
 
 	}
+
+	/**
+	 * Check student submission of the Quiz
+	 *
+	 * @throws IOException
+	 */
 
 	public void verifySubmittedQuiz() throws IOException {
 		currentQuestionNumber--;
@@ -200,7 +206,7 @@ public class ShowQuiz {
 	}
 
 	/**
-	 * To set the Questions and Answers
+	 * Set the Questions and Answers
 	 */
 	private void setQuestions() {
 		System.out.println("-----" + currentQuestionNumber);
@@ -211,20 +217,17 @@ public class ShowQuiz {
 		currentQuestionNumber = currentQuestionNumber + 1;
 		List<String> options = question.getOptions();
 		radioButtonGroup = new ToggleGroup();
-
-		option1.setToggleGroup(radioButtonGroup);
-		option2.setToggleGroup(radioButtonGroup);
-		option3.setToggleGroup(radioButtonGroup);
-		option4.setToggleGroup(radioButtonGroup);
-
-		option1.setSelected(false);
-		option2.setSelected(false);
-		option3.setSelected(false);
-		option4.setSelected(false);
-
-		option1.setText(options.get(0));
-		option2.setText(options.get(1));
-		option3.setText(options.get(2));
-		option4.setText(options.get(3));
+		answerOption1.setToggleGroup(radioButtonGroup);
+		answerOption2.setToggleGroup(radioButtonGroup);
+		answerOption3.setToggleGroup(radioButtonGroup);
+		answerOption4.setToggleGroup(radioButtonGroup);
+		answerOption1.setSelected(false);
+		answerOption2.setSelected(false);
+		answerOption3.setSelected(false);
+		answerOption4.setSelected(false);
+		answerOption1.setText(options.get(0));
+		answerOption2.setText(options.get(1));
+		answerOption3.setText(options.get(2));
+		answerOption4.setText(options.get(3));
 	}
 }
