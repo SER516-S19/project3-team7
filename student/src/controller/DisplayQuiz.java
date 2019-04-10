@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Question;
 import model.QuizDetails;
@@ -27,6 +28,9 @@ public class DisplayQuiz {
 	private Text questionTitle;
 	@FXML
 	private Text questionNumber;
+
+	@FXML
+	private Text quizMessage;
 
 	@FXML
 	private Text successMessage;
@@ -63,6 +67,7 @@ public class DisplayQuiz {
 		setQuizTitleLabel(selectedQuiz);
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
 		questions.addAll(quiz.getQuestions());
+		quizMessage.setText("Good Luck with the Quiz!!");
 		setQuestions();
 	}
 
@@ -71,6 +76,7 @@ public class DisplayQuiz {
 	 */
 	public void loadWrongAnswerdQuestions() {
 		setQuizTitleLabel(QuizName.getText());
+		quizMessage.setText("You couldn't complete the quiz successfully. Keep Trying!!!");
 		setQuestions();
 	}
 
@@ -210,7 +216,6 @@ public class DisplayQuiz {
 	 */
 	private void setQuestions() {
 		System.out.println("-----" + currentQuestionNumber);
-
 		Question question = questions.get(currentQuestionNumber);
 		questionNumber.setText(currentQuestionNumber + 1 + ")");
 		questionTitle.setText(question.getTitle());
