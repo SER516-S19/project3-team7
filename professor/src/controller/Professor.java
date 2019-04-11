@@ -20,6 +20,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -59,10 +60,15 @@ public class Professor implements Initializable {
     private void loadQuizzes() {
         File newFile = new File("quiz");
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
-
         assert allFiles != null;
         for (File file : allFiles)
             listOfQuizNames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
+        showHome(listOfQuizNames);
+
+    }
+
+    private void showHome(List listOfQuizNames){
+
         Collections.sort(listOfQuizNames);
         quizList.refresh();
         quizNames.clear();
@@ -71,12 +77,24 @@ public class Professor implements Initializable {
         quizList.setCellFactory(param -> new XCell());
     }
 
-    public void selectQuiz() {
+    public String selectQuiz() {
         String selectedItem = quizList.getSelectionModel().getSelectedItem();
         System.out.println(selectedItem);
+        return selectedItem;
+    }
+    public void deleteQuiz(String quiz){
+        System.out.println("delete" + quiz);
+        File file = new File("quiz/" + quiz + ".json");
+        file.delete();
+        listOfQuizNames.remove(quiz);
+        System.out.println("Deleted" + quiz);
+        showHome(listOfQuizNames);
+
+
     }
 
-    static class XCell extends ListCell<String> {
+
+    class XCell extends ListCell<String> {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
         Pane pane = new Pane();
@@ -90,7 +108,7 @@ public class Professor implements Initializable {
             hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
             edit.setOnAction(event -> System.out.println("Edit " + lastItem));
-            delete.setOnAction(event -> System.out.println("Delete " + lastItem));
+            delete.setOnAction(event -> deleteQuiz(lastItem));
         }
 
         @Override
