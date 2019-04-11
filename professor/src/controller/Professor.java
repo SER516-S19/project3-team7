@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -64,10 +65,15 @@ public class Professor implements Initializable {
     public void loadQuizzes() {
         File newFile = new File("quiz");
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
-
         assert allFiles != null;
         for (File file : allFiles)
             listOfQuizNames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
+        showHome(listOfQuizNames);
+
+    }
+
+    private void showHome(List listOfQuizNames){
+
         Collections.sort(listOfQuizNames);
         quizList.refresh();
         quizNames.clear();
@@ -76,9 +82,20 @@ public class Professor implements Initializable {
         quizList.setCellFactory(param -> new XCell());
     }
 
-    public void selectQuiz() {
+    public String selectQuiz() {
         String selectedItem = quizList.getSelectionModel().getSelectedItem();
         System.out.println(selectedItem);
+        return selectedItem;
+    }
+    public void deleteQuiz(String quiz){
+        System.out.println("delete" + quiz);
+        File file = new File("quiz/" + quiz + ".json");
+        file.delete();
+        listOfQuizNames.remove(quiz);
+        System.out.println("Deleted" + quiz);
+        showHome(listOfQuizNames);
+
+
     }
 
     public void loadCurrentQuiz() throws IOException {
@@ -109,7 +126,9 @@ public class Professor implements Initializable {
                 }
             });
 
-            delete.setOnAction(event -> System.out.println("Delete " + lastItem));
+            edit.setOnAction(event -> System.out.println("Edit " + lastItem));
+            delete.setOnAction(event -> deleteQuiz(lastItem));
+
         }
 
         @Override
