@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,11 +22,11 @@
                 <HBox prefHeight="17.0" prefWidth="680.0">
                     <children>
                         <Label text="Option 1:" />
-                        <CheckBox fx:id="checkOption1" mnemonicParsing="false" text="Check if correct answer.">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </CheckBox>
+                  <RadioButton fx:id="radioOption1" mnemonicParsing="false" text="Select if correct answer">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
                     </children>
                 </HBox>
                 <TextField fx:id="option1" alignment="TOP_LEFT" promptText="Option 1">
@@ -37,11 +37,11 @@
                 <HBox prefHeight="20.0" prefWidth="680.0">
                     <children>
                         <Label text="Option 2:" />
-                        <CheckBox fx:id="checkOption2" mnemonicParsing="false" text="Check if correcct answer.">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </CheckBox>
+                  <RadioButton fx:id="radioOption2" mnemonicParsing="false" text="Select if correct answer">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
                     </children>
                 </HBox>
                 <TextField fx:id="option2" alignment="TOP_LEFT" promptText="Option2">
@@ -52,11 +52,11 @@
                 <HBox prefHeight="20.0" prefWidth="680.0">
                     <children>
                         <Label text="Option 3:" />
-                        <CheckBox fx:id="checkOption3" mnemonicParsing="false" text="Check if correct answer.">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </CheckBox>
+                  <RadioButton fx:id="radioOption3" mnemonicParsing="false" text="Select if correct answer">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
                     </children>
                 </HBox>
                 <TextField fx:id="option3" alignment="TOP_LEFT" promptText="Option 3">
@@ -67,11 +67,11 @@
                 <HBox prefHeight="13.0" prefWidth="680.0">
                     <children>
                         <Label text="Option 4:" />
-                        <CheckBox fx:id="checkOption4" mnemonicParsing="false" text="Check if correct answer.">
-                            <HBox.margin>
-                                <Insets left="5.0" />
-                            </HBox.margin>
-                        </CheckBox>
+                  <RadioButton fx:id="radioOption4" mnemonicParsing="false" text="Select if correct answer">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </RadioButton>
                     </children>
                 </HBox>
                 <TextField fx:id="option4" alignment="TOP_LEFT" promptText="Option 4">

@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Questions;
 import model.Quiz;
@@ -38,18 +36,19 @@ public class CreateQuiz implements Initializable {
     @FXML
     private TextField option4;
     @FXML
-    private CheckBox checkOption1;
+    private RadioButton radioOption1;
     @FXML
-    private CheckBox checkOption2;
+    private RadioButton radioOption2;
     @FXML
-    private CheckBox checkOption3;
+    private RadioButton radioOption3;
     @FXML
-    private CheckBox checkOption4;
+    private RadioButton radioOption4;
     @FXML
     private Label errorQuizName;
 
     private List<Questions> questions = new ArrayList<Questions>();
     model.Quiz new_quiz = new model.Quiz();
+    private ToggleGroup option = new ToggleGroup();
 
     private Scene professorScene;
 
@@ -76,6 +75,14 @@ public class CreateQuiz implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        radioOption1.setToggleGroup(option);
+        radioOption2.setToggleGroup(option);
+        radioOption3.setToggleGroup(option);
+        radioOption4.setToggleGroup(option);
+    }
+
+    public void setSelectedOption(){
+        radioOption1.setToggleGroup(option);
 
     }
 
@@ -90,13 +97,13 @@ public class CreateQuiz implements Initializable {
             Questions new_question = new Questions();
             if (!question.getText().isEmpty()) {
                 new_question.setTitle(question.getText().trim());
-                if (checkOption1.isSelected())
+                if (radioOption1.isSelected())
                     correctAnswer = option1.getText().trim();
-                else if (checkOption2.isSelected())
+                else if (radioOption2.isSelected())
                     correctAnswer = option2.getText().trim();
-                else if (checkOption3.isSelected())
+                else if (radioOption3.isSelected())
                     correctAnswer = option3.getText().trim();
-                else if (checkOption4.isSelected())
+                else if (radioOption4.isSelected())
                     correctAnswer = option4.getText().trim();
                 new_question.setCorrectAnswer(correctAnswer);
                 options.add(option1.getText().trim());
@@ -112,10 +119,10 @@ public class CreateQuiz implements Initializable {
             option2.clear();
             option3.clear();
             option4.clear();
-            checkOption1.setSelected(false);
-            checkOption2.setSelected(false);
-            checkOption3.setSelected(false);
-            checkOption4.setSelected(false);
+            radioOption1.setSelected(false);
+            radioOption2.setSelected(false);
+            radioOption3.setSelected(false);
+            radioOption4.setSelected(false);
         }
     }
 }
