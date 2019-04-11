@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExitQuiz">
   <children>
-    <Text layoutX="177.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations! You have completed the quiz" />
+    <Text fx:id="SuccessText" layoutX="177.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations! You have completed the quiz"/>
     <Button fx:id="HomeButton" layoutX="192.0" layoutY="179.0" mnemonicParsing="false" onAction="#goBackHome" text="Take Another Quiz" />
     <Button fx:id="ExitButton" layoutX="360.0" layoutY="179.0" mnemonicParsing="false" onAction="#exitQuiz" text="Exit" />
   </children>

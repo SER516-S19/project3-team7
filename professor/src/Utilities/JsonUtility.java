@@ -24,7 +24,7 @@ public class JsonUtility {
      */
     public void writeToJson(Quiz quiz, String title) {
         ObjectMapper objectMapper = new ObjectMapper();
-        String filePath = "quiz/" + title + ".json";
+        String filePath = System.getProperty("user.dir")+"/quiz/" + title + ".json";
         try {
             File newFile = new File(filePath);
             newFile.createNewFile();

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -100,24 +101,19 @@ public class DisplayQuiz {
 	 */
 	public void showNextQuestion() throws IOException {
 		int quizSize = questions.size();
-		System.out.println("quizSize : " + quizSize);
 		String submissionType = nextButton.getText();
 		if ("Submit".equalsIgnoreCase(submissionType)) {
 			verifySubmittedQuiz();
 		} else {
 			if (currentQuestionNumber < quizSize) {
-				System.out.println("currentQuestionNumber : " + currentQuestionNumber);
-				System.out.println(
-						"questions.get(currentQuestionNumber-1) : " + questions.get(currentQuestionNumber - 1));
+				
 				Question currentQuestion = questions.get(currentQuestionNumber - 1);
-				System.out.println(selectedAns + " : " + currentQuestion.getCorrectAnswer());
 				if (selectedAns != null && currentQuestion.getCorrectAnswer() != null) {
 					if (!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 						queWithIncorrectAns.add(currentQuestion);
 					} else {
 						if (queWithIncorrectAns.contains(currentQuestion)) {
 							queWithIncorrectAns.remove(currentQuestion);
-							System.out.println("showNextQuestion :" + queWithIncorrectAns);
 						}
 					}
 				}
@@ -134,19 +130,15 @@ public class DisplayQuiz {
 	 */
 	public void setSelectedRadioButton() {
 		if (answerOption1.isSelected()) {
-			System.out.println("Selected :" + answerOption1.getText());
 			selectedAns = answerOption1.getText();
 		}
 		if (answerOption2.isSelected()) {
-			System.out.println("Selected :" + answerOption2.getText());
 			selectedAns = answerOption2.getText();
 		}
 		if (answerOption3.isSelected()) {
-			System.out.println("Selected :" + answerOption3.getText());
 			selectedAns = answerOption3.getText();
 		}
 		if (answerOption4.isSelected()) {
-			System.out.println("Selected :" + answerOption4.getText());
 			selectedAns = answerOption4.getText();
 		}
 
@@ -162,41 +154,30 @@ public class DisplayQuiz {
 		currentQuestionNumber--;
 		Question currentQuestion = questions.get(currentQuestionNumber);
 		if (selectedAns != null && currentQuestion.getCorrectAnswer() != null) {
-			System.out.println(selectedAns + " : " + currentQuestion.getCorrectAnswer());
+			
 			if (!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 				queWithIncorrectAns.add(currentQuestion);
-				System.out.println("verifySubmittedQuiz :" + queWithIncorrectAns);
 			} else {
-				System.out.println("verifySubmittedQuiz : " + queWithIncorrectAns.contains(currentQuestion));
 				if (queWithIncorrectAns.contains(currentQuestion)) {
 					queWithIncorrectAns.remove(currentQuestion);
-					System.out.println("verifySubmittedQuiz :" + queWithIncorrectAns);
 				}
 			}
 		}
 
-		System.out.println("Verify your submitted quiz.");
-		System.out.println();
-		System.out.println(queWithIncorrectAns);
+		
 		if (queWithIncorrectAns.size() == 0) {
-			// endQuiz();
-			successMessage.setText("Woah!!! You answered all questions correctly!");
-			successMessage.setFill(Color.GREEN);
+			
+			//successMessage.setText("Woah!!! You answered all questions correctly!");
+			//successMessage.setFill(Color.GREEN);
 			showCongrats();
-			nextButton.setDisable(true);
-			giveupButton.setText("Close");
-			System.out.println("All answers are correct!!!");
+			//nextButton.setDisable(true);
+			//giveupButton.setText("Close");
+
 		} else {
 			currentQuestionNumber = 0;
 			nextButton.setText("Next");
-			System.out.println();
-			System.out.println();
 			questions = new ArrayList<>(queWithIncorrectAns);
 			queWithIncorrectAns = new ArrayList<>();
-			System.out.println("questions : " + questions);
-			System.out.println("queWithIncorrectAns : " + queWithIncorrectAns);
-			System.out.println();
-			System.out.println();
 			loadWrongAnswerdQuestions();
 		}
 	}
@@ -204,6 +185,9 @@ public class DisplayQuiz {
 	private void showCongrats() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/exitPage.fxml"));
 		Parent root = loader.load();
+		Text text = (Text) root.getChildrenUnmodifiable().get(0);
+		text.setFill(Color.GREEN);
+		text.setFont(Font.font("Edwardian Script ITC", 16)); 
 		giveupButton.getScene().setRoot(root);
 	}
 
@@ -215,7 +199,7 @@ public class DisplayQuiz {
 	 * Set the Questions and Answers
 	 */
 	private void setQuestions() {
-		System.out.println("-----" + currentQuestionNumber);
+
 		Question question = questions.get(currentQuestionNumber);
 		questionNumber.setText(currentQuestionNumber + 1 + ")");
 		questionTitle.setText(question.getTitle());
