@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,6 +81,12 @@ public class Professor implements Initializable {
         System.out.println(selectedItem);
     }
 
+    public void loadCurrentQuiz() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/viewQuiz.fxml"));
+        Parent root = loader.load();
+        exitButton.getScene().setRoot(root);
+    }
+
      class XCell extends ListCell<String> {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
@@ -92,7 +101,13 @@ public class Professor implements Initializable {
             hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
 
-            edit.setOnAction(event -> System.out.println("Modify " + lastItem));
+            edit.setOnAction(event -> {
+                try {
+                    loadCurrentQuiz();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
 
             delete.setOnAction(event -> System.out.println("Delete " + lastItem));
         }
