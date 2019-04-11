@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -72,7 +73,7 @@ public class Professor implements Initializable {
 
     }
 
-    private void showHome(List listOfQuizNames){
+    private void showHome(List listOfQuizNames) {
 
         Collections.sort(listOfQuizNames);
         quizList.refresh();
@@ -87,15 +88,13 @@ public class Professor implements Initializable {
         System.out.println(selectedItem);
         return selectedItem;
     }
-    public void deleteQuiz(String quiz){
-        System.out.println("delete" + quiz);
+    
+    public void deleteQuiz(String quiz) {
         File file = new File("quiz/" + quiz + ".json");
         file.delete();
         listOfQuizNames.remove(quiz);
         System.out.println("Deleted" + quiz);
         showHome(listOfQuizNames);
-
-
     }
 
     public void loadCurrentQuiz() throws IOException {
@@ -104,7 +103,7 @@ public class Professor implements Initializable {
         exitButton.getScene().setRoot(root);
     }
 
-     class XCell extends ListCell<String> {
+    class XCell extends ListCell<String> {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
         Pane pane = new Pane();
