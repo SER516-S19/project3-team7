@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewQuiz">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <Label text="View Quiz: Quiz Name" BorderPane.alignment="CENTER">
+            <Label fx:id="quizName" text="Quiz Name" BorderPane.alignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -36,12 +28,25 @@
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <bottom>
                                        </bottom>
-                                       <left>
-                                          <Button mnemonicParsing="false" text="Previous" BorderPane.alignment="CENTER" />
-                                       </left>
-                                       <right>
-                                          <Button mnemonicParsing="false" text="Next" BorderPane.alignment="CENTER" />
-                                       </right>
+                                       <bottom>
+                                          <TextArea fx:id="question" editable="false" prefHeight="94.0" prefWidth="626.0" text="Question 1) What is the capital of Arizona?" BorderPane.alignment="CENTER" />
+                                       </bottom>
+                                       <top>
+                                          <HBox alignment="TOP_CENTER" prefHeight="66.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteQuestion" text="Delete">
+                                                   <HBox.margin>
+                                                      <Insets right="20.0" top="20.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#editQuestion" text="Edit">
+                                                   <HBox.margin>
+                                                      <Insets top="20.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </top>
                                     </BorderPane>
                                  </center>
                               </BorderPane>
@@ -55,19 +60,26 @@
       </BorderPane>
    </top>
    <bottom>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="326.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+      <SplitPane orientation="VERTICAL" prefHeight="356.0" prefWidth="626.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="215.0" prefWidth="576.0">
                <children>
-                  <TextArea layoutX="-2.0" prefHeight="147.0" prefWidth="626.0" text="Question 1) What is the capital of Arizona?" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <CheckBox layoutY="5.0" mnemonicParsing="false" text="Answer1" />
-                  <CheckBox layoutY="23.0" mnemonicParsing="false" text="Answer2" />
-                  <CheckBox layoutY="41.0" mnemonicParsing="false" text="Answer3" />
-                  <CheckBox layoutY="59.0" mnemonicParsing="false" text="Answer4" />
+                <AnchorPane layoutX="-1.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="626.0">
+                     <children>
+                        <RadioButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="RadioButton">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="answerOptions" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton layoutX="14.0" layoutY="34.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
+                        <RadioButton layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
+                        <RadioButton layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
+                     </children>
+                  </AnchorPane>
+                  <HBox alignment="TOP_RIGHT" layoutX="-1.0" layoutY="139.0" prefHeight="153.0" prefWidth="600.0">
+                     <children>
+                        <Button fx:id="nextQuestion" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
         </items>

@@ -15,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -79,12 +78,12 @@ public class Professor implements Initializable {
         System.out.println(selectedItem);
     }
 
-    static class XCell extends ListCell<String> {
+     class XCell extends ListCell<String> {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
         Pane pane = new Pane();
-        Button edit = new Button("Edit Quiz");
-        Button delete = new Button("Delete");
+        Button edit = new Button("Modify Quiz");
+        Button delete = new Button("Delete Quiz");
         String lastItem;
 
         XCell() {
@@ -92,7 +91,9 @@ public class Professor implements Initializable {
             hbox.getChildren().addAll(label, pane, edit, delete);
             hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
-            edit.setOnAction(event -> System.out.println("Edit " + lastItem));
+
+            edit.setOnAction(event -> System.out.println("Modify " + lastItem));
+
             delete.setOnAction(event -> System.out.println("Delete " + lastItem));
         }
 
