@@ -2,14 +2,17 @@ package controller;
 
 import Utilities.JsonUtility;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Questions;
 import model.Quiz;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,13 +59,14 @@ public class CreateQuiz implements Initializable {
         professorScene = scene;
     }
 
-    public void openProfessorScene(javafx.event.ActionEvent actionEvent) {
-        Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    public void openProfessorScene(javafx.event.ActionEvent actionEvent) throws IOException {
         if (!quizName.getText().trim().isEmpty()) {
             addQuestion();
             JsonUtility file = new JsonUtility();
             file.writeToJson(new_quiz, quizName.getText());
-            quizWindow.setScene(professorScene);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Professor.fxml"));
+            Parent root = loader.load();
+            quizName.getScene().setRoot(root);
         } else {
             errorQuizName.setText("Please enter the quiz name.");
         }

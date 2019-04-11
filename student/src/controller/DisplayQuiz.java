@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import model.Question;
 import model.QuizDetails;
@@ -21,6 +20,7 @@ import java.util.List;
 /**
  * Class to render the Quiz from the JSON file
  */
+
 public class DisplayQuiz {
 
 	@FXML

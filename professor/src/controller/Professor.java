@@ -33,6 +33,9 @@ public class Professor implements Initializable {
     @FXML
     private ListView<String> quizList;
 
+    @FXML
+    private Button exitButton;
+
     private ObservableList<String> quizNames = FXCollections.observableArrayList();
 
     private ArrayList<String> listOfQuizNames = new ArrayList<>();
@@ -56,7 +59,7 @@ public class Professor implements Initializable {
         loadQuizzes();
     }
 
-    private void loadQuizzes() {
+    public void loadQuizzes() {
         File newFile = new File("quiz");
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
 
@@ -107,5 +110,11 @@ public class Professor implements Initializable {
             }
         }
     }
+
+    public void exitQuiz(ActionEvent actionEvent) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
 }
 

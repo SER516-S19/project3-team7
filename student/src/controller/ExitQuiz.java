@@ -12,6 +12,7 @@ import java.io.IOException;
 /**
  * Controller to handle exit quiz requests from the student
  */
+
 public class ExitQuiz {
 
     @FXML
