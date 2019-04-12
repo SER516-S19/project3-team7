@@ -28,16 +28,15 @@ public class DisplayQuiz implements Initializable {
 
 	@FXML
 	public Label QuizName;
+
 	@FXML
 	private Text questionTitle;
+
 	@FXML
 	private Text questionNumber;
 
 	@FXML
 	private Text quizMessage;
-
-	@FXML
-	private Text successMessage;
 
 	@FXML
 	private Button giveupButton;
@@ -57,7 +56,6 @@ public class DisplayQuiz implements Initializable {
 	private ToggleGroup radioButtonGroup = null;
 
 	private String selectedAns = null;
-	private int questionNo = 0;
 	private int currentQuestionNumber = 0;
 
 	private StudentModel studentModel = new StudentModel();
@@ -114,7 +112,6 @@ public class DisplayQuiz implements Initializable {
 			verifySubmittedQuiz();
 		} else {
 			if (currentQuestionNumber < quizSize) {
-				
 				Question currentQuestion = questions.get(currentQuestionNumber - 1);
 				if (selectedAns != null && currentQuestion.getCorrectAnswer() != null) {
 					if (!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
@@ -156,12 +153,10 @@ public class DisplayQuiz implements Initializable {
 	 *
 	 * @throws IOException
 	 */
-
 	public void verifySubmittedQuiz() throws IOException {
 		currentQuestionNumber--;
 		Question currentQuestion = questions.get(currentQuestionNumber);
 		if (selectedAns != null && currentQuestion.getCorrectAnswer() != null) {
-			
 			if (!selectedAns.equalsIgnoreCase(currentQuestion.getCorrectAnswer())) {
 				queWithIncorrectAns.add(currentQuestion);
 			} else {
@@ -171,7 +166,6 @@ public class DisplayQuiz implements Initializable {
 			}
 		}
 
-		
 		if (queWithIncorrectAns.size() == 0) {
 			showCongrats();
 		} else {
@@ -183,6 +177,10 @@ public class DisplayQuiz implements Initializable {
 		}
 	}
 
+	/**
+	 * Function to display the Success message
+	 * @throws IOException
+	 */
 	private void showCongrats() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/exitPage.fxml"));
 		Parent root = loader.load();
@@ -192,6 +190,10 @@ public class DisplayQuiz implements Initializable {
 		giveupButton.getScene().setRoot(root);
 	}
 
+	/**
+	 * Function to set the Quiz title
+	 * @param selectedQuiz
+	 */
 	private void setQuizTitleLabel(String selectedQuiz) {
 		QuizName.setText(selectedQuiz);
 	}

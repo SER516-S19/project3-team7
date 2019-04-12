@@ -31,7 +31,6 @@ public class StudentModel {
      *
      * @return Quiz Names
      */
-
     public List<String> getQuizNames() {
         File folder = new File("quiz");
         File[] listOfFiles = folder.listFiles();

@@ -20,15 +20,21 @@ public class ExitQuiz {
 
     @FXML
     private Button ExitButton;
-    
-    @FXML
-    private Text SuccessText;
 
+    /**
+     * Function to exit the quiz
+     * @param actionEvent
+     */
     public void exitQuiz(ActionEvent actionEvent) {
         Stage stage = (Stage) ExitButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Function to redirect to home page
+     * @param actionEvent
+     * @throws IOException
+     */
     public void goBackHome(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/student.fxml"));
         Parent root = loader.load();
