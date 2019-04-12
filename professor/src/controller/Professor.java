@@ -45,15 +45,23 @@ public class Professor implements Initializable {
     private ArrayList<String> listOfQuizNames = new ArrayList<>();
 
     private Scene createQuizScene;
+    
+    private Scene viewQuizScene;
+    
 
     public void setCreateQuizScene(Scene scene) {
         createQuizScene = scene;
     }
+    
+   	public void setViewQuizScene(Scene scene) {
+   		viewQuizScene = scene;
+   	}
 
     public void openCreateQuizScene(ActionEvent actionEvent) {
         Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         quizWindow.setScene(createQuizScene);
     }
+    
 
     public Professor() {
     }
@@ -64,7 +72,8 @@ public class Professor implements Initializable {
     }
 
     public void loadQuizzes() {
-        File newFile = new File("quiz");
+        File newFile = new File("project3-team7/quiz");
+        System.out.println("Absolute file path:"+newFile.getAbsolutePath());
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
         assert allFiles != null;
         for (File file : allFiles)
@@ -97,7 +106,8 @@ public class Professor implements Initializable {
         showHome(listOfQuizNames);
     }
 
-    public void loadCurrentQuiz() throws IOException {
+    public void loadCurrentQuiz(String quiz) throws IOException {
+        ViewQuiz.quiz = quiz;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/viewQuiz.fxml"));
         Parent root = loader.load();
         exitButton.getScene().setRoot(root);
@@ -107,24 +117,22 @@ public class Professor implements Initializable {
         HBox hbox = new HBox();
         Label label = new Label("(empty)");
         Pane pane = new Pane();
-        Button edit = new Button("Modify Quiz");
+        Button modify = new Button("Modify Quiz");
         Button delete = new Button("Delete Quiz");
         String lastItem;
 
         XCell() {
             super();
-            hbox.getChildren().addAll(label, pane, edit, delete);
+            hbox.getChildren().addAll(label, pane, modify, delete);
             hbox.setSpacing(30.0);
             HBox.setHgrow(pane, Priority.ALWAYS);
-
-            edit.setOnAction(event -> {
-                try {
-                    loadCurrentQuiz();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
+            modify.setOnAction(event -> {
+				try {
+					loadCurrentQuiz(lastItem);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
             delete.setOnAction(event -> deleteQuiz(lastItem));
 
         }

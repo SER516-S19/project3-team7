@@ -1,4 +1,5 @@
 import controller.Professor;
+import controller.ViewQuiz;
 import controller.CreateQuiz;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,12 +27,20 @@ public class ProfessorApplication extends Application {
         FXMLLoader createQuizPaneLoader = new FXMLLoader(getClass().getResource("view/CreateQuiz.fxml"));
         Parent createQuizPane = createQuizPaneLoader.load();
         Scene createQuizScene = new Scene(createQuizPane, 800, 600);
+        
+        FXMLLoader viewQuizPaneLoader = new FXMLLoader(getClass().getResource("view/viewQuiz.fxml"));
+        Parent viewQuizPane = viewQuizPaneLoader.load();
+        Scene viewQuizScene = new Scene(viewQuizPane, 800, 600);
 
         Professor professorPaneController = professorPaneLoader.getController();
         professorPaneController.setCreateQuizScene(createQuizScene);
+        professorPaneController.setViewQuizScene(viewQuizScene);
 
         CreateQuiz createQuizPaneController = createQuizPaneLoader.getController();
         createQuizPaneController.setProfessorScene(professorScene);
+        
+        ViewQuiz viewQuizPaneController = viewQuizPaneLoader.getController();
+        viewQuizPaneController.setProfessorScene(professorScene);
 
         quizWindow.setScene(professorScene);
         quizWindow.show();
