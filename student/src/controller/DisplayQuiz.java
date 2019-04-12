@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,15 +14,17 @@ import model.QuizDetails;
 import model.StudentModel;
 import javafx.scene.paint.Color;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Class to render the Quiz from the JSON file
  */
 
-public class DisplayQuiz {
+public class DisplayQuiz implements Initializable {
 
 	@FXML
 	public Label QuizName;
@@ -57,14 +60,19 @@ public class DisplayQuiz {
 	private int questionNo = 0;
 	private int currentQuestionNumber = 0;
 
-	StudentModel studentModel = new StudentModel();
+	private StudentModel studentModel = new StudentModel();
+
+	private String selectedQuiz = studentModel.getSelectedQuizName();
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		loadQuiz();
+	}
 
 	/**
 	 * Function to load the question and options
-	 * 
-	 * @param selectedQuiz
 	 */
-	public void loadQuiz(String selectedQuiz) {
+	public void loadQuiz() {
 		setQuizTitleLabel(selectedQuiz);
 		QuizDetails quiz = studentModel.readQuizDetails(selectedQuiz);
 		questions.addAll(quiz.getQuestions());
@@ -141,7 +149,6 @@ public class DisplayQuiz {
 		if (answerOption4.isSelected()) {
 			selectedAns = answerOption4.getText();
 		}
-
 	}
 
 	/**
@@ -166,13 +173,7 @@ public class DisplayQuiz {
 
 		
 		if (queWithIncorrectAns.size() == 0) {
-			
-			//successMessage.setText("Woah!!! You answered all questions correctly!");
-			//successMessage.setFill(Color.GREEN);
 			showCongrats();
-			//nextButton.setDisable(true);
-			//giveupButton.setText("Close");
-
 		} else {
 			currentQuestionNumber = 0;
 			nextButton.setText("Next");

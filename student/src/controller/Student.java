@@ -47,11 +47,9 @@ public class Student implements Initializable {
 	 * @throws IOException
 	 */
 	private void loadQuiz(String selectedQuiz) throws IOException {
-		DisplayQuiz questionAnswerObj;
+		studentModel.setSelectedQuizName(selectedQuiz);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
 		Parent root = loader.load();
-		questionAnswerObj = loader.getController();
-		questionAnswerObj.loadQuiz(selectedQuiz);
 		quizList.getScene().setRoot(root);
 	}
 

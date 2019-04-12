@@ -16,6 +16,16 @@ public class StudentModel {
 
     private List<String> quizNames = new ArrayList<>();
 
+    public String getSelectedQuizName() {
+        return selectedQuizName;
+    }
+
+    public void setSelectedQuizName(String selectedQuizName) {
+        this.selectedQuizName = selectedQuizName;
+    }
+
+    private static String selectedQuizName;
+
     /**
      * Read the names of the quiz files created by the professor
      *

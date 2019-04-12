@@ -125,7 +125,6 @@ public class Professor implements Initializable {
                 }
             });
 
-            edit.setOnAction(event -> System.out.println("Edit " + lastItem));
             delete.setOnAction(event -> deleteQuiz(lastItem));
 
         }
