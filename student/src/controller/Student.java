@@ -55,6 +55,9 @@ public class Student implements Initializable {
 		quizList.getScene().setRoot(root);
 	}
 
+	/**
+	 * Event listener for list view click
+	 */
 	public void listViewEventListener() {
 		quizList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
