@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import model.StudentModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +47,7 @@ public class Student implements Initializable {
 	 */
 	private void loadQuiz(String selectedQuiz) throws IOException {
 		studentModel.setSelectedQuizName(selectedQuiz);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/showQuiz.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/showQuiz.fxml"));
 		Parent root = loader.load();
 		quizList.getScene().setRoot(root);
 	}

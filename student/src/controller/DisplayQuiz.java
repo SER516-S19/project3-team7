@@ -92,7 +92,7 @@ public class DisplayQuiz implements Initializable {
 	 */
 	public void endQuiz() {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/student.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/student.fxml"));
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("Hello Student");
 			primaryStage.setScene(new Scene(root, 800, 600));
@@ -182,7 +182,7 @@ public class DisplayQuiz implements Initializable {
 	 * @throws IOException
 	 */
 	private void showCongrats() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/exitPage.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/exitPage.fxml"));
 		Parent root = loader.load();
 		Text text = (Text) root.getChildrenUnmodifiable().get(0);
 		text.setFill(Color.GREEN);
@@ -202,7 +202,6 @@ public class DisplayQuiz implements Initializable {
 	 * Set the Questions and Answers
 	 */
 	private void setQuestions() {
-
 		Question question = questions.get(currentQuestionNumber);
 		questionNumber.setText(currentQuestionNumber + 1 + ")");
 		questionTitle.setText(question.getTitle());

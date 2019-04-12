@@ -36,7 +36,7 @@ public class ExitQuiz {
      * @throws IOException
      */
     public void goBackHome(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/student.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student.fxml"));
         Parent root = loader.load();
         HomeButton.getScene().setRoot(root);
     }
