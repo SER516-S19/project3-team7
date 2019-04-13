@@ -70,20 +70,23 @@ public class ViewQuiz implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-		JsonUtility jsonUtility = new JsonUtility();
-		String quizPath;
-    	if(null != this.quiz) {
-    		quizPath = "quiz/"+quiz+".json";
-    		System.out.print("Quiz Path:"+quizPath);
-    		quizDetails = jsonUtility.getAllQuestionsFromFile(quizPath);
-    		questionNumber = 0;
-    		new_quiz = quizDetails;
-			System.out.println(new_quiz);
-    		currentQuestion = quizDetails.getQuestions().get(questionNumber);
-    		initializeNextAndPrev();
-    		loadDataOnUI(currentQuestion);
-    	}
-
+		    try {
+				JsonUtility jsonUtility = new JsonUtility();
+				String quizPath;
+				if (null != this.quiz) {
+					quizPath = "quiz/" + quiz + ".json";
+					System.out.print("Quiz Path:" + quizPath);
+					quizDetails = jsonUtility.getAllQuestionsFromFile(quizPath);
+					questionNumber = 0;
+					new_quiz = quizDetails;
+					System.out.println(new_quiz);
+					currentQuestion = quizDetails.getQuestions().get(questionNumber);
+					initializeNextAndPrev();
+					loadDataOnUI(currentQuestion);
+				}
+			}catch (Exception e){
+		    	e.printStackTrace();
+			}
 	}
 
 	/**
