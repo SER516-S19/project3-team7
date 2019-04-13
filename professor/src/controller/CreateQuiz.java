@@ -47,6 +47,8 @@ public class CreateQuiz implements Initializable {
 	private RadioButton radioOption4;
 	@FXML
 	private Label errorQuizName;
+	@FXML
+	private Label errorQuestion;
 
 	private List<Questions> questions = new ArrayList<Questions>();
 	model.Quiz new_quiz = new model.Quiz();
@@ -59,7 +61,7 @@ public class CreateQuiz implements Initializable {
 	}
 
 	public void openProfessorScene(javafx.event.ActionEvent actionEvent) throws IOException {
-		if (!quizName.getText().trim().isEmpty()) {
+		if (!quizName.getText().trim().isEmpty() && !question.getText().trim().isEmpty()) {
 			addQuestion();
 			JsonUtility file = new JsonUtility();
 			file.writeToJson(new_quiz, quizName.getText());
@@ -68,8 +70,10 @@ public class CreateQuiz implements Initializable {
 			Parent root = loader.load();
 			quizName.getScene().setRoot(root);
 
-		} else {
+		} else if(quizName.getText().trim().isEmpty()) {
 			errorQuizName.setText("Please enter the quiz name.");
+		} else if(question.getText().trim().isEmpty()) {
+			errorQuestion.setText("Please enter at least a question.");
 		}
 	}
 
@@ -93,6 +97,9 @@ public class CreateQuiz implements Initializable {
 	public void addQuestion() {
 		if (quizName.getText().trim().isEmpty()) {
 			errorQuizName.setText("Please enter the quiz name.");
+			return;
+		} else if (question.getText().trim().isEmpty()) {
+			errorQuestion.setText("Please enter at least a question.");
 			return;
 		} else {
 			List<String> options = new ArrayList<>();
