@@ -11,7 +11,9 @@ java -jar Student.jar
 
 Please have the "quiz" folder in the same directory where you are executing the jar, it will read the quiz files from that folder.
 
-Team-Members
+For editing an existing quiz, Click on modify quiz, and save after editing. You can only modify the quiz which has questions added to it. No new questions can be added. The edited changes will be saved only clicking save button. Press Exit to come out.
+
+Team-Members <br />
 
 Jahnvi Rai - Product Owner
 Bhawana Prasad - Scrum Master
