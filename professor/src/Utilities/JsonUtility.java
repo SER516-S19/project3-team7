@@ -1,5 +1,7 @@
 package Utilities;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Quiz;
 
@@ -33,5 +35,25 @@ public class JsonUtility {
             System.out.println("Exception while generating file.");
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Reads the Quiz json file and maps it to Quiz Class
+     * @param quizPath name of Quiz file
+     * @return Quiz
+     */
+    public Quiz getAllQuestionsFromFile(String quizPath){
+        Quiz questions = null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            questions = objectMapper.readValue(new File(quizPath), Quiz.class);
+        } catch (JsonParseException e) {
+            e.printStackTrace();
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return questions;
     }
 }

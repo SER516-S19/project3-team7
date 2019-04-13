@@ -96,7 +96,11 @@ public class Professor implements Initializable {
         System.out.println(selectedItem);
         return selectedItem;
     }
-    
+
+    /**
+     * Function to delete the quiz and update the list of quiz
+     * @param quiz
+     */
     public void deleteQuiz(String quiz) {
         File file = new File("quiz/" + quiz + ".json");
         file.delete();

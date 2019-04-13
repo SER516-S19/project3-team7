@@ -92,11 +92,10 @@ public class DisplayQuiz implements Initializable {
 	 */
 	public void endQuiz() {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/student.fxml"));
-			Stage primaryStage = new Stage();
-			primaryStage.setTitle("Hello Student");
-			primaryStage.setScene(new Scene(root, 800, 600));
-			primaryStage.show();
+			FXMLLoader loader =new FXMLLoader(getClass().getResource("/view/Student.fxml"));
+			Parent root = loader.load();
+			giveupButton.getScene().setRoot(root);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

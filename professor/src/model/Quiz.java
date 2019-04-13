@@ -17,4 +17,11 @@ public class Quiz {
     public void setQuestions(List<Questions> questions) {
         this.questions = questions;
     }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "questions=" + questions +
+                '}';
+    }
 }
