@@ -29,7 +29,7 @@
                                        <bottom>
                                        </bottom>
                                        <bottom>
-                                          <TextArea fx:id="question" editable="false" prefHeight="94.0" prefWidth="626.0" text="Question 1) What is the capital of Arizona?" BorderPane.alignment="CENTER" />
+                                          <TextArea fx:id="question" editable="false" prefHeight="94.0" prefWidth="626.0" BorderPane.alignment="CENTER" />
                                        </bottom>
                                        <top>
                                           <HBox alignment="TOP_CENTER" prefHeight="66.0" prefWidth="626.0" BorderPane.alignment="CENTER">
@@ -66,13 +66,13 @@
                <children>
                 <AnchorPane layoutX="-1.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="626.0">
                      <children>
-                        <RadioButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="RadioButton">
+                        <RadioButton fx:id="option1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false">
                            <toggleGroup>
                               <ToggleGroup fx:id="answerOptions" />
                            </toggleGroup></RadioButton>
-                        <RadioButton layoutX="14.0" layoutY="34.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
-                        <RadioButton layoutX="14.0" layoutY="54.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
-                        <RadioButton layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="RadioButton" toggleGroup="$answerOptions" />
+                        <RadioButton fx:id="option2" layoutX="14.0" layoutY="34.0" mnemonicParsing="false" toggleGroup="$answerOptions" />
+                        <RadioButton fx:id="option3" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" toggleGroup="$answerOptions" />
+                        <RadioButton fx:id="option4" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" toggleGroup="$answerOptions" />
                      </children>
                   </AnchorPane>
                   <HBox alignment="TOP_RIGHT" layoutX="-1.0" layoutY="139.0" prefHeight="153.0" prefWidth="600.0">
