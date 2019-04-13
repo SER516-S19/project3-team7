@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,8 +80,11 @@ public class Professor implements Initializable {
 
     }
 
+    /**
+     * Return to home
+     * @param listOfQuizNames
+     */
     private void showHome(List listOfQuizNames) {
-
         Collections.sort(listOfQuizNames);
         quizList.refresh();
         quizNames.clear();
@@ -101,7 +103,7 @@ public class Professor implements Initializable {
      * Function to delete the quiz and update the list of quiz
      * @param quiz
      */
-    public void deleteQuiz(String quiz) {
+    private void deleteQuiz(String quiz) {
         File file = new File("quiz/" + quiz + ".json");
         file.delete();
         listOfQuizNames.remove(quiz);
@@ -109,9 +111,14 @@ public class Professor implements Initializable {
         showHome(listOfQuizNames);
     }
 
-    public void loadCurrentQuiz(String quiz) throws IOException {
+    /**
+     * Render the quiz
+     * @param quiz
+     * @throws IOException
+     */
+    private void loadCurrentQuiz(String quiz) throws IOException {
     	ViewQuiz.quiz = quiz;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/viewQuiz.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/viewQuiz.fxml"));
         Parent root = loader.load();
         exitButton.getScene().setRoot(root);
     }
@@ -155,6 +162,10 @@ public class Professor implements Initializable {
         }
     }
 
+    /**
+     * Close professor application
+     * @param actionEvent
+     */
     public void exitQuiz(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();

@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import Utilities.JsonUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,19 +65,11 @@ public class CreateQuiz implements Initializable {
 			addQuestion();
 			JsonUtility file = new JsonUtility();
 			file.writeToJson(new_quiz, quizName.getText());
-			
 			quizName.clear();
-			
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Professor.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Professor.fxml"));
 			Parent root = loader.load();
-			Stage primaryStage = new Stage();
-			primaryStage.setScene(new Scene(root, 800, 600));
-			primaryStage.show();
+			quizName.getScene().setRoot(root);
 
-			/*
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Professor.fxml"));
-            Parent root = loader.load();
-            quizName.getScene().setRoot(root);*/
 		} else {
 			errorQuizName.setText("Please enter the quiz name.");
 		}
@@ -97,13 +88,10 @@ public class CreateQuiz implements Initializable {
 		radioOption4.setToggleGroup(option);
 	}
 
-	public void setSelectedOption(){
-		radioOption1.setToggleGroup(option);
-
-	}
-
+	/**
+	 * Add questions in the quiz
+	 */
 	public void addQuestion() {
-
 		if (quizName.getText().trim().isEmpty()) {
 			errorQuizName.setText("Please enter the quiz name.");
 			return;
