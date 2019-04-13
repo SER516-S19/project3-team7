@@ -9,7 +9,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import Utilities.JsonUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -83,7 +82,6 @@ public class ViewQuiz implements Initializable{
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-		JsonUtility jsonUtility = new JsonUtility();
 		String quizPath;
     	if(null != this.quiz) {
     		quizPath = "quiz/"+quiz+".json";
@@ -108,7 +106,7 @@ public class ViewQuiz implements Initializable{
 	}
 
 	public void loadDataOnUI(Questions question) {
-		setQuizName(quiz.toUpperCase());
+		setQuizName(quiz);
 		setQuestion(question.getTitle());
 		this.correctOption = question.getCorrectAnswer();
 		setOption1(question.getOptions().get(0));
