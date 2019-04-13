@@ -67,7 +67,7 @@ public class ViewQuiz implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		String quizPath;
     	if(null != quiz) {
-    		quizPath = "project3-team7/quiz/"+quiz+".json";
+    		quizPath = "quiz/"+quiz+".json";
     		System.out.print("Quiz Path:"+quizPath);
     		ViewQuizDetails allQuestions  = getAllQuestions(quizPath);
     		currentQuestions = allQuestions.getQuestions().get(0);

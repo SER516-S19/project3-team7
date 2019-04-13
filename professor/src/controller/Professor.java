@@ -72,7 +72,7 @@ public class Professor implements Initializable {
     }
 
     public void loadQuizzes() {
-        File newFile = new File("project3-team7/quiz");
+        File newFile = new File("quiz");
         System.out.println("Absolute file path:"+newFile.getAbsolutePath());
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
         assert allFiles != null;
