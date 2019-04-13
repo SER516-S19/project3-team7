@@ -75,6 +75,19 @@
                      <children>
                         <Button fx:id="prevQuestion" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" onAction="#previousQuestion" text="Previous" />
                         <Button fx:id="nextQuestion" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+                        <Button fx:id="saveQuiz" mnemonicParsing="false" onAction="#saveQuiz" text="Save">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="exitQuiz" mnemonicParsing="false" onAction="#exitQuiz" text="Exit">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </children>

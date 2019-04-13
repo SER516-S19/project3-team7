@@ -2,10 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Utilities.JsonUtility;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -49,6 +52,7 @@ public class ViewQuiz implements Initializable{
     
     @FXML
 	private Button nextQuestion;
+
     
     private Quiz allQuestions;
     
@@ -57,6 +61,9 @@ public class ViewQuiz implements Initializable{
 	public static Questions currentQuestion;
     
     private int questionNumber;
+
+    model.Quiz new_quiz = new model.Quiz();
+    private List<Questions> questions = new ArrayList<Questions>();
     
 	public void setQuiz(String quiz) {
 		this.quiz = quiz;
@@ -178,5 +185,41 @@ public class ViewQuiz implements Initializable{
     public void editQuestion(){
         question.setEditable(true);
     }
+    public void saveQuiz() throws IOException {
+        List<String> options = new ArrayList<>();
+
+
+        currentQuestion.setTitle(question.getText().trim());
+
+        options.add(option1.getText().trim());
+        options.add(option2.getText().trim());
+        options.add(option3.getText().trim());
+        options.add(option4.getText().trim());
+        currentQuestion.setOptions(options);
+
+        if (option1.isSelected())
+            correctOption = option1.getText().trim();
+        else if (option2.isSelected())
+            correctOption = option2.getText().trim();
+        else if (option3.isSelected())
+            correctOption = option3.getText().trim();
+        else if (option4.isSelected())
+            correctOption = option4.getText().trim();
+
+        currentQuestion.setCorrectAnswer(correctOption);
+
+        questions.add(currentQuestion);
+
+        new_quiz.setQuestions(questions);
+
+    }
+
+    public void exitQuiz(){
+        JsonUtility file = new JsonUtility();
+        file.writeToJson(new_quiz, quizName.getText());
+
+    }
+
+
     
 }
