@@ -9,14 +9,12 @@ import Utilities.JsonUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.stage.Stage;
 import model.Questions;
 
 /**
@@ -66,7 +64,7 @@ public class CreateQuiz implements Initializable {
 			JsonUtility file = new JsonUtility();
 			file.writeToJson(new_quiz, quizName.getText());
 			quizName.clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Professor.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor.fxml"));
 			Parent root = loader.load();
 			quizName.getScene().setRoot(root);
 
@@ -75,9 +73,10 @@ public class CreateQuiz implements Initializable {
 		}
 	}
 
-	public void home(javafx.event.ActionEvent actionEvent) {
-		Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-		quizWindow.setScene(professorScene);
+	public void home(javafx.event.ActionEvent actionEvent) throws IOException{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor.fxml"));
+		Parent root = loader.load();
+		quizName.getScene().setRoot(root);
 	}
 
 	@Override

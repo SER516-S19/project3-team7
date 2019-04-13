@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -55,9 +54,10 @@ public class Professor implements Initializable {
         createQuizScene = scene;
     }
 
-    public void openCreateQuizScene(ActionEvent actionEvent) {
-        Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        quizWindow.setScene(createQuizScene);
+    public void openCreateQuizScene(ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/CreateQuiz.fxml"));
+        Parent root = loader.load();
+        quizList.getScene().setRoot(root);
     }
     
 
@@ -71,7 +71,6 @@ public class Professor implements Initializable {
 
     public void loadQuizzes() {
         File newFile = new File("quiz");
-        System.out.println("Absolute file path:"+newFile.getAbsolutePath());
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
         assert allFiles != null;
         for (File file : allFiles)
