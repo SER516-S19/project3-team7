@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewQuiz">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewQuiz">
    <top>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
@@ -35,14 +41,11 @@
                                           <HBox alignment="TOP_CENTER" prefHeight="66.0" prefWidth="626.0" BorderPane.alignment="CENTER" />
                                        </top>
                                        <left>
-                                          <Button fx:id="home" mnemonicParsing="false" text="Home" onAction="#home" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="home" mnemonicParsing="false" onAction="#home" text="Home" BorderPane.alignment="CENTER" />
                                        </left>
                                        <right>
-                                          <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteQuestion" text="Delete" BorderPane.alignment="CENTER" />
-                                       </right>
-                                       <center>
                                           <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#editQuestion" text="Edit" BorderPane.alignment="CENTER" />
-                                       </center>
+                                       </right>
                                     </BorderPane>
                                  </top>
                               </BorderPane>
@@ -73,7 +76,7 @@
                   </AnchorPane>
                   <HBox alignment="TOP_RIGHT" layoutX="-1.0" layoutY="139.0" prefHeight="153.0" prefWidth="600.0">
                      <children>
-                        <Button fx:id="prevQuestion" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" onAction="#previousQuestion" text="Previous" />
+                        <Button fx:id="prevQuestion" disable="true" mnemonicParsing="false" onAction="#previousQuestion" prefHeight="25.0" prefWidth="71.0" text="Previous" />
                         <Button fx:id="nextQuestion" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
                         <Button fx:id="saveQuiz" mnemonicParsing="false" onAction="#saveQuiz" text="Save">
                            <opaqueInsets>
