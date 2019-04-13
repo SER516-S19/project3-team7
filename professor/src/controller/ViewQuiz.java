@@ -177,10 +177,6 @@ public class ViewQuiz implements Initializable{
 		primaryStage.setScene(new Scene(root, 800, 600));
 		primaryStage.show();
 	}
-    
-    public void deleteQuestion(){
-
-    }
 
     public void editQuestion(){
         question.setEditable(true);
