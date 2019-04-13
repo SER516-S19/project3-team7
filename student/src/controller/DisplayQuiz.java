@@ -92,7 +92,7 @@ public class DisplayQuiz implements Initializable {
 	 */
 	public void endQuiz() {
 		try {
-			FXMLLoader loader =new FXMLLoader(getClass().getResource("/view/Student.fxml"));
+			FXMLLoader loader =new FXMLLoader(getClass().getResource("/view/student.fxml"));
 			Parent root = loader.load();
 			giveupButton.getScene().setRoot(root);
 
