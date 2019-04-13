@@ -1,13 +1,9 @@
 package controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import Utilities.JsonUtility;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import model.Questions;
-import model.ViewQuizDetails;
+import model.Quiz;
 
 
 public class ViewQuiz implements Initializable{
@@ -47,29 +43,16 @@ public class ViewQuiz implements Initializable{
     public void setProfessorScene(Scene scene) {
 		professorScene = scene;
 	}
-    
-    public ViewQuizDetails getAllQuestions(String quizPath){
-    	ViewQuizDetails questions = null;
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            questions = objectMapper.readValue(new File(quizPath), ViewQuizDetails.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       return questions;
-    }
+
     
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+		JsonUtility jsonUtility = new JsonUtility();
 		String quizPath;
     	if(null != quiz) {
     		quizPath = "quiz/"+quiz+".json";
     		System.out.print("Quiz Path:"+quizPath);
-    		ViewQuizDetails allQuestions  = getAllQuestions(quizPath);
+    		Quiz allQuestions  = jsonUtility.getAllQuestionsFromFile(quizPath);
     		currentQuestions = allQuestions.getQuestions().get(0);
     		loadDataOnUI(currentQuestions);
     	}
