@@ -1,5 +1,13 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,14 +25,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
 
 /**
  * Controller to handle the requests when professor application launches
@@ -45,17 +45,16 @@ public class Professor implements Initializable {
     private ArrayList<String> listOfQuizNames = new ArrayList<>();
 
     private Scene createQuizScene;
+        
+    private Scene professorScene;
     
-    private Scene viewQuizScene;
-    
+    public void setProfessorScene(Scene scene) {
+    	professorScene = scene;
+    }
 
     public void setCreateQuizScene(Scene scene) {
         createQuizScene = scene;
     }
-    
-   	public void setViewQuizScene(Scene scene) {
-   		viewQuizScene = scene;
-   	}
 
     public void openCreateQuizScene(ActionEvent actionEvent) {
         Stage quizWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -72,7 +71,7 @@ public class Professor implements Initializable {
     }
 
     public void loadQuizzes() {
-        File newFile = new File("project3-team7/quiz");
+        File newFile = new File("quiz");
         System.out.println("Absolute file path:"+newFile.getAbsolutePath());
         File[] allFiles = newFile.listFiles((dir1, name) -> name.endsWith(".json"));
         assert allFiles != null;
@@ -107,7 +106,7 @@ public class Professor implements Initializable {
     }
 
     public void loadCurrentQuiz(String quiz) throws IOException {
-        ViewQuiz.quiz = quiz;
+    	ViewQuiz.quiz = quiz;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/viewQuiz.fxml"));
         Parent root = loader.load();
         exitButton.getScene().setRoot(root);

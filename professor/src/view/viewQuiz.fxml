@@ -24,7 +24,7 @@
                         <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <center>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                 <center>
+                                 <top>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <bottom>
                                        </bottom>
@@ -32,23 +32,19 @@
                                           <TextArea fx:id="question" editable="false" prefHeight="94.0" prefWidth="626.0" BorderPane.alignment="CENTER" />
                                        </bottom>
                                        <top>
-                                          <HBox alignment="TOP_CENTER" prefHeight="66.0" prefWidth="626.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteQuestion" text="Delete">
-                                                   <HBox.margin>
-                                                      <Insets right="20.0" top="20.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                                <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#editQuestion" text="Edit">
-                                                   <HBox.margin>
-                                                      <Insets top="20.0" />
-                                                   </HBox.margin>
-                                                </Button>
-                                             </children>
-                                          </HBox>
+                                          <HBox alignment="TOP_CENTER" prefHeight="66.0" prefWidth="626.0" BorderPane.alignment="CENTER" />
                                        </top>
+                                       <left>
+                                          <Button fx:id="home" mnemonicParsing="false" text="Home" onAction="#home" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <right>
+                                          <Button fx:id="delete" mnemonicParsing="false" onAction="#deleteQuestion" text="Delete" BorderPane.alignment="CENTER" />
+                                       </right>
+                                       <center>
+                                          <Button fx:id="editQuestion" mnemonicParsing="false" onAction="#editQuestion" text="Edit" BorderPane.alignment="CENTER" />
+                                       </center>
                                     </BorderPane>
-                                 </center>
+                                 </top>
                               </BorderPane>
                            </center>
                         </BorderPane>
@@ -77,6 +73,7 @@
                   </AnchorPane>
                   <HBox alignment="TOP_RIGHT" layoutX="-1.0" layoutY="139.0" prefHeight="153.0" prefWidth="600.0">
                      <children>
+                        <Button fx:id="prevQuestion" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" onAction="#previousQuestion" text="Previous" />
                         <Button fx:id="nextQuestion" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
                      </children>
                   </HBox>
