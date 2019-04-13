@@ -1,13 +1,10 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import Utilities.JsonUtility;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +18,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import model.Questions;
-import model.ViewQuizDetails;
+import model.Quiz;
 
 
 public class ViewQuiz implements Initializable{
@@ -53,7 +50,7 @@ public class ViewQuiz implements Initializable{
     @FXML
 	private Button nextQuestion;
     
-    private ViewQuizDetails allQuestions;
+    private Quiz allQuestions;
     
     public static String quiz;
 
@@ -64,29 +61,15 @@ public class ViewQuiz implements Initializable{
 	public void setQuiz(String quiz) {
 		this.quiz = quiz;
 	}
-	
-    public ViewQuizDetails getAllQuestions(String quizPath){
-    	ViewQuizDetails questions = null;
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            questions = objectMapper.readValue(new File(quizPath), ViewQuizDetails.class);
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       return questions;
-    }  
-    
+
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+		JsonUtility jsonUtility = new JsonUtility();
 		String quizPath;
     	if(null != this.quiz) {
     		quizPath = "quiz/"+quiz+".json";
     		System.out.print("Quiz Path:"+quizPath);
-    		allQuestions  = getAllQuestions(quizPath);
+    		allQuestions  = jsonUtility.getAllQuestionsFromFile(quizPath);
     		questionNumber = 0;
     		currentQuestion = allQuestions.getQuestions().get(questionNumber);
     		initializeNextAndPrev();
